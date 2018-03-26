@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title></title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">AirTurn Interface </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">AirTurn</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+
+	
+
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title"></h1>
+
+					
+
+                    
+
+					
+
+                    
+                    <h3 class="subsubtitle method-title">AirTurnCentralState</h3>
+                    
+					
+					<div class="section section-overview">
+                        <p>Defines the central state</p>
+					</div>
+					
+					
+                    <div class="section">
+                        <!-- display enum values -->
+                        
+                        <h4 class="method-subtitle">Definition</h4>
+                        <code>typedef NS_ENUM(NSInteger, AirTurnCentralState ) {<br>
+                            
+                            &nbsp;&nbsp; <a href="">AirTurnCentralStateUnknown</a> = 0,<br>
+                            
+                            &nbsp;&nbsp; <a href="">AirTurnCentralStateResetting</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">AirTurnCentralStateUnsupported</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">AirTurnCentralStateUnauthorized</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">AirTurnCentralStatePoweredOff</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">AirTurnCentralStateDisabled</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">AirTurnCentralStateDisconnected</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">AirTurnCentralStateConnected</a>,<br>
+                            
+                            };</code>
+                    
+                    </div>
+                    
+                    <div class="section section-methods">
+                        <h4 class="method-subtitle">Constants</h4>
+                        <dl class="termdef">
+                            
+                            <dt><a name="" title="AirTurnCentralStateUnknown"></a><code>AirTurnCentralStateUnknown</code></dt>
+<dd>
+
+
+<p>Unknown central state</p>
+
+
+
+
+
+    
+	<p>
+		 <code class="declared-in-ref">AirTurnTypes.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="AirTurnCentralStateResetting"></a><code>AirTurnCentralStateResetting</code></dt>
+<dd>
+
+
+<p>The central manager is resetting, wait for next state change&hellip;</p>
+
+
+
+
+
+    
+	<p>
+		 <code class="declared-in-ref">AirTurnTypes.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="AirTurnCentralStateUnsupported"></a><code>AirTurnCentralStateUnsupported</code></dt>
+<dd>
+
+
+<p>Bluetooth low energy is not supported on this device</p>
+
+
+
+
+
+    
+	<p>
+		 <code class="declared-in-ref">AirTurnTypes.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="AirTurnCentralStateUnauthorized"></a><code>AirTurnCentralStateUnauthorized</code></dt>
+<dd>
+
+
+<p>Bluetooth low energy is not authorised for this application</p>
+
+
+
+
+
+    
+	<p>
+		 <code class="declared-in-ref">AirTurnTypes.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="AirTurnCentralStatePoweredOff"></a><code>AirTurnCentralStatePoweredOff</code></dt>
+<dd>
+
+
+<p>Bluetooth is powered off</p>
+
+
+
+
+
+    
+	<p>
+		 <code class="declared-in-ref">AirTurnTypes.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="AirTurnCentralStateDisabled"></a><code>AirTurnCentralStateDisabled</code></dt>
+<dd>
+
+
+<p>AirTurn Central is disabled</p>
+
+
+
+
+
+    
+	<p>
+		 <code class="declared-in-ref">AirTurnTypes.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="AirTurnCentralStateDisconnected"></a><code>AirTurnCentralStateDisconnected</code></dt>
+<dd>
+
+
+<p>AirTurn Central is not connected to an AirTurn</p>
+
+
+
+
+
+    
+	<p>
+		 <code class="declared-in-ref">AirTurnTypes.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="AirTurnCentralStateConnected"></a><code>AirTurnCentralStateConnected</code></dt>
+<dd>
+
+
+<p>AirTurn Central is connected</p>
+
+
+
+
+
+    
+	<p>
+		 <code class="declared-in-ref">AirTurnTypes.h</code>.
+	</p>
+	
+</dd>
+                            
+                        </dl>
+                    </div>
+                    
+
+                    
+                    
+
+                    
+
+                    
+                    <div class="method-subsection declared-in-section">
+                        <h4 class="method-subtitle"></h4>
+                        <p><code class="declared-in-ref">AirTurnTypes.h</code></p>
+                    </div>
+                    
+                    
+                    
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2017 AirTurn. All rights reserved. Updated: 2017-08-10</p>
+						
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

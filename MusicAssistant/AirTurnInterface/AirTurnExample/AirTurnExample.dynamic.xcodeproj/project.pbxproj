@@ -1,0 +1,726 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		013BA04419991F9F00ACC1AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 013BA04319991F9F00ACC1AE /* main.m */; };
+		013BA04719991F9F00ACC1AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 013BA04619991F9F00ACC1AE /* AppDelegate.m */; };
+		013BA04A19991F9F00ACC1AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013BA04919991F9F00ACC1AE /* ViewController.m */; };
+		013BA04D19991F9F00ACC1AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 013BA04B19991F9F00ACC1AE /* Main.storyboard */; };
+		013BA04F19991F9F00ACC1AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 013BA04E19991F9F00ACC1AE /* Images.xcassets */; };
+		013BA0671999206E00ACC1AE /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013BA0661999206E00ACC1AE /* CoreBluetooth.framework */; };
+		013BA0691999207400ACC1AE /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013BA0681999207400ACC1AE /* MediaPlayer.framework */; };
+		013BA0701999274000ACC1AE /* AirTurnUIConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013BA06C1999274000ACC1AE /* AirTurnUIConnectionController.m */; };
+		013BA0711999274000ACC1AE /* AirTurnUIImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 013BA06D1999274000ACC1AE /* AirTurnUIImages.xcassets */; };
+		013BA0721999274000ACC1AE /* AirTurnUIPeripheralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 013BA06F1999274000ACC1AE /* AirTurnUIPeripheralController.m */; };
+		013BA0761999296900ACC1AE /* PortLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 013BA0751999296900ACC1AE /* PortLabel.m */; };
+		016C7C5F1BAC2C7100B1E06C /* AirTurnInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01BA851E1BA8A9E200B25753 /* AirTurnInterface.framework */; };
+		0175E0841BCC6F3400BB97B5 /* NBPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0175E0811BCC6F3400BB97B5 /* NBPopoverController.m */; };
+		0175E0851BCC6F3400BB97B5 /* NBTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0175E0831BCC6F3400BB97B5 /* NBTableViewController.m */; };
+		0175E0901BCC6F4000BB97B5 /* PlaygroundController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0175E08F1BCC6F4000BB97B5 /* PlaygroundController.m */; };
+		0175E0931BCC6F5000BB97B5 /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0175E0921BCC6F5000BB97B5 /* TestTableViewController.m */; };
+		0181B5EF1BFCC941009650B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0181B5ED1BFCC941009650B7 /* LaunchScreen.storyboard */; };
+		01BA85201BA8A9EA00B25753 /* AirTurnInterface.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 01BA851E1BA8A9E200B25753 /* AirTurnInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		01FEF3521BA74F6C007E531C /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01FEF3391BA74F46007E531C /* CocoaLumberjack.framework */; };
+		01FEF3541BA74F7D007E531C /* CocoaLumberjack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 01FEF3391BA74F46007E531C /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0181B5FC1BFCC941009650B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19190EDE1B84D812008D059E;
+			remoteInfo = "CocoaLumberjack-watchOS";
+		};
+		0181B5FE1BFCC941009650B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19D90B261BBFA9DB00947169;
+			remoteInfo = "CocoaLumberjack-tvOS";
+		};
+		0181B6001BFCC941009650B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19EC14671B84D134000EC2E7;
+			remoteInfo = watchOSSwiftTest;
+		};
+		0181B6021BFCC941009650B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19EC14731B84D134000EC2E7;
+			remoteInfo = "watchOSSwiftTest Extension";
+		};
+		0181B6041BFCC941009650B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19406BE11BDBABFF001194DC;
+			remoteInfo = tvOSSwiftTest;
+		};
+		01985F791BFF7E0400399D88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19FF460F1B8B4D1400B43179;
+			remoteInfo = "CocoaLumberjackSwift-iOS";
+		};
+		01985F7B1BFF7E0400399D88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19190EEB1B84D826008D059E;
+			remoteInfo = "CocoaLumberjackSwift-watchOS";
+		};
+		01985F7D1BFF7E0400399D88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19D90B351BBFAA7500947169;
+			remoteInfo = "CocoaLumberjackSwift-tvOS";
+		};
+		01FEF3341BA74F46007E531C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DCB3185114EB418E001CFBEE;
+			remoteInfo = CocoaLumberjack;
+		};
+		01FEF3361BA74F46007E531C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 18F3BF0F1A81D8B700692297;
+			remoteInfo = CocoaLumberjackSwift;
+		};
+		01FEF3381BA74F46007E531C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 18F3BFA71A81DF5600692297;
+			remoteInfo = "CocoaLumberjack-iOS";
+		};
+		01FEF33C1BA74F46007E531C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 18F3BFD71A81E06E00692297;
+			remoteInfo = "CocoaLumberjack-iOS-Static";
+		};
+		01FEF33E1BA74F46007E531C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DCB318CA14ED6C3B001CFBEE;
+			remoteInfo = FmwkTest;
+		};
+		01FEF3401BA74F46007E531C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55CCBEFF19BA679200957A39;
+			remoteInfo = SwiftTest;
+		};
+		01FEF3421BA74F46007E531C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 18F3BF5F1A81DD2E00692297;
+			remoteInfo = iOSSwiftTest;
+		};
+		01FEF3441BA74F46007E531C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 18F3BFF21A81E0C700692297;
+			remoteInfo = iOSLibStaticTest;
+		};
+		01FEF3471BA74F61007E531C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 19FF46011B8B4CF400B43179;
+			remoteInfo = "CocoaLumberjack-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		01FEF3531BA74F70007E531C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				01BA85201BA8A9EA00B25753 /* AirTurnInterface.framework in CopyFiles */,
+				01FEF3541BA74F7D007E531C /* CocoaLumberjack.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		013BA03E19991F9F00ACC1AE /* AirTurnExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirTurnExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		013BA04219991F9F00ACC1AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		013BA04319991F9F00ACC1AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		013BA04519991F9F00ACC1AE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		013BA04619991F9F00ACC1AE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		013BA04819991F9F00ACC1AE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		013BA04919991F9F00ACC1AE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		013BA04C19991F9F00ACC1AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		013BA04E19991F9F00ACC1AE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		013BA0661999206E00ACC1AE /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		013BA0681999207400ACC1AE /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		013BA06B1999274000ACC1AE /* AirTurnUIConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirTurnUIConnectionController.h; sourceTree = "<group>"; };
+		013BA06C1999274000ACC1AE /* AirTurnUIConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirTurnUIConnectionController.m; sourceTree = "<group>"; };
+		013BA06D1999274000ACC1AE /* AirTurnUIImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AirTurnUIImages.xcassets; sourceTree = "<group>"; };
+		013BA06E1999274000ACC1AE /* AirTurnUIPeripheralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirTurnUIPeripheralController.h; sourceTree = "<group>"; };
+		013BA06F1999274000ACC1AE /* AirTurnUIPeripheralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirTurnUIPeripheralController.m; sourceTree = "<group>"; };
+		013BA0741999296900ACC1AE /* PortLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortLabel.h; sourceTree = "<group>"; };
+		013BA0751999296900ACC1AE /* PortLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortLabel.m; sourceTree = "<group>"; };
+		0175E0801BCC6F3400BB97B5 /* NBPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBPopoverController.h; sourceTree = "<group>"; };
+		0175E0811BCC6F3400BB97B5 /* NBPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBPopoverController.m; sourceTree = "<group>"; };
+		0175E0821BCC6F3400BB97B5 /* NBTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTableViewController.h; sourceTree = "<group>"; };
+		0175E0831BCC6F3400BB97B5 /* NBTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTableViewController.m; sourceTree = "<group>"; };
+		0175E08E1BCC6F4000BB97B5 /* PlaygroundController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaygroundController.h; sourceTree = "<group>"; };
+		0175E08F1BCC6F4000BB97B5 /* PlaygroundController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaygroundController.m; sourceTree = "<group>"; };
+		0175E0911BCC6F5000BB97B5 /* TestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewController.h; sourceTree = "<group>"; };
+		0175E0921BCC6F5000BB97B5 /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
+		0181B5EE1BFCC941009650B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		01BA851E1BA8A9E200B25753 /* AirTurnInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AirTurnInterface.framework; path = "../../Framework-dynamic/AirTurnInterface.framework"; sourceTree = "<group>"; };
+		01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Lumberjack.xcodeproj; path = AirTurnExample/CocoaLumberjack/Lumberjack.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		013BA03B19991F9F00ACC1AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01FEF3521BA74F6C007E531C /* CocoaLumberjack.framework in Frameworks */,
+				016C7C5F1BAC2C7100B1E06C /* AirTurnInterface.framework in Frameworks */,
+				013BA0691999207400ACC1AE /* MediaPlayer.framework in Frameworks */,
+				013BA0671999206E00ACC1AE /* CoreBluetooth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		013BA03519991F9F00ACC1AE = {
+			isa = PBXGroup;
+			children = (
+				01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */,
+				013BA0731999274A00ACC1AE /* Frameworks */,
+				013BA06A1999274000ACC1AE /* AirTurnUI */,
+				0175E07F1BCC6F3400BB97B5 /* Drop-in Replacement Classes */,
+				013BA04019991F9F00ACC1AE /* AirTurnExample */,
+				013BA03F19991F9F00ACC1AE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		013BA03F19991F9F00ACC1AE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				013BA03E19991F9F00ACC1AE /* AirTurnExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		013BA04019991F9F00ACC1AE /* AirTurnExample */ = {
+			isa = PBXGroup;
+			children = (
+				01BA851E1BA8A9E200B25753 /* AirTurnInterface.framework */,
+				013BA04519991F9F00ACC1AE /* AppDelegate.h */,
+				013BA04619991F9F00ACC1AE /* AppDelegate.m */,
+				013BA04819991F9F00ACC1AE /* ViewController.h */,
+				013BA04919991F9F00ACC1AE /* ViewController.m */,
+				0175E08E1BCC6F4000BB97B5 /* PlaygroundController.h */,
+				0175E08F1BCC6F4000BB97B5 /* PlaygroundController.m */,
+				0175E0911BCC6F5000BB97B5 /* TestTableViewController.h */,
+				0175E0921BCC6F5000BB97B5 /* TestTableViewController.m */,
+				013BA0741999296900ACC1AE /* PortLabel.h */,
+				013BA0751999296900ACC1AE /* PortLabel.m */,
+				0181B5ED1BFCC941009650B7 /* LaunchScreen.storyboard */,
+				013BA04B19991F9F00ACC1AE /* Main.storyboard */,
+				013BA04E19991F9F00ACC1AE /* Images.xcassets */,
+				013BA04119991F9F00ACC1AE /* Supporting Files */,
+			);
+			path = AirTurnExample;
+			sourceTree = "<group>";
+		};
+		013BA04119991F9F00ACC1AE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				013BA04219991F9F00ACC1AE /* Info.plist */,
+				013BA04319991F9F00ACC1AE /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		013BA06A1999274000ACC1AE /* AirTurnUI */ = {
+			isa = PBXGroup;
+			children = (
+				013BA06B1999274000ACC1AE /* AirTurnUIConnectionController.h */,
+				013BA06C1999274000ACC1AE /* AirTurnUIConnectionController.m */,
+				013BA06D1999274000ACC1AE /* AirTurnUIImages.xcassets */,
+				013BA06E1999274000ACC1AE /* AirTurnUIPeripheralController.h */,
+				013BA06F1999274000ACC1AE /* AirTurnUIPeripheralController.m */,
+			);
+			name = AirTurnUI;
+			path = ../AirTurnUI;
+			sourceTree = "<group>";
+		};
+		013BA0731999274A00ACC1AE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				013BA0661999206E00ACC1AE /* CoreBluetooth.framework */,
+				013BA0681999207400ACC1AE /* MediaPlayer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0175E07F1BCC6F3400BB97B5 /* Drop-in Replacement Classes */ = {
+			isa = PBXGroup;
+			children = (
+				0175E0801BCC6F3400BB97B5 /* NBPopoverController.h */,
+				0175E0811BCC6F3400BB97B5 /* NBPopoverController.m */,
+				0175E0821BCC6F3400BB97B5 /* NBTableViewController.h */,
+				0175E0831BCC6F3400BB97B5 /* NBTableViewController.m */,
+			);
+			name = "Drop-in Replacement Classes";
+			path = "../Drop-in Replacement Classes";
+			sourceTree = "<group>";
+		};
+		01FEF3291BA74F46007E531C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				01FEF3351BA74F46007E531C /* CocoaLumberjack.framework */,
+				01FEF3371BA74F46007E531C /* CocoaLumberjackSwift.framework */,
+				01FEF3391BA74F46007E531C /* CocoaLumberjack.framework */,
+				01985F7A1BFF7E0400399D88 /* CocoaLumberjackSwift.framework */,
+				01FEF33D1BA74F46007E531C /* libCocoaLumberjack.a */,
+				0181B5FD1BFCC941009650B7 /* CocoaLumberjack.framework */,
+				01985F7C1BFF7E0400399D88 /* CocoaLumberjackSwift.framework */,
+				0181B5FF1BFCC941009650B7 /* CocoaLumberjack.framework */,
+				01985F7E1BFF7E0400399D88 /* CocoaLumberjackSwift.framework */,
+				01FEF33F1BA74F46007E531C /* FmwkTest.app */,
+				01FEF3411BA74F46007E531C /* SwiftTest.app */,
+				01FEF3431BA74F46007E531C /* iOSSwiftTest.app */,
+				0181B6011BFCC941009650B7 /* watchOSSwiftTest.app */,
+				0181B6031BFCC941009650B7 /* watchOSSwiftTest Extension.appex */,
+				0181B6051BFCC941009650B7 /* tvOSSwiftTest.app */,
+				01FEF3451BA74F46007E531C /* iOSLibStaticTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		013BA03D19991F9F00ACC1AE /* AirTurnExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 013BA05E19991F9F00ACC1AE /* Build configuration list for PBXNativeTarget "AirTurnExample" */;
+			buildPhases = (
+				013BA03A19991F9F00ACC1AE /* Sources */,
+				013BA03B19991F9F00ACC1AE /* Frameworks */,
+				013BA03C19991F9F00ACC1AE /* Resources */,
+				01FEF3531BA74F70007E531C /* CopyFiles */,
+				016C7C6D1BAC779A00B1E06C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				01FEF3481BA74F61007E531C /* PBXTargetDependency */,
+			);
+			name = AirTurnExample;
+			productName = AirTurnExample;
+			productReference = 013BA03E19991F9F00ACC1AE /* AirTurnExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		013BA03619991F9F00ACC1AE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = AirTurn;
+				TargetAttributes = {
+					013BA03D19991F9F00ACC1AE = {
+						CreatedOnToolsVersion = 6.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 013BA03919991F9F00ACC1AE /* Build configuration list for PBXProject "AirTurnExample.dynamic" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 013BA03519991F9F00ACC1AE;
+			productRefGroup = 013BA03F19991F9F00ACC1AE /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 01FEF3291BA74F46007E531C /* Products */;
+					ProjectRef = 01FEF3281BA74F46007E531C /* Lumberjack.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				013BA03D19991F9F00ACC1AE /* AirTurnExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		0181B5FD1BFCC941009650B7 /* CocoaLumberjack.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CocoaLumberjack.framework;
+			remoteRef = 0181B5FC1BFCC941009650B7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0181B5FF1BFCC941009650B7 /* CocoaLumberjack.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CocoaLumberjack.framework;
+			remoteRef = 0181B5FE1BFCC941009650B7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0181B6011BFCC941009650B7 /* watchOSSwiftTest.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = watchOSSwiftTest.app;
+			remoteRef = 0181B6001BFCC941009650B7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0181B6031BFCC941009650B7 /* watchOSSwiftTest Extension.appex */ = {
+			isa = PBXReferenceProxy;
+			fileType = "wrapper.app-extension";
+			path = "watchOSSwiftTest Extension.appex";
+			remoteRef = 0181B6021BFCC941009650B7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0181B6051BFCC941009650B7 /* tvOSSwiftTest.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = tvOSSwiftTest.app;
+			remoteRef = 0181B6041BFCC941009650B7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01985F7A1BFF7E0400399D88 /* CocoaLumberjackSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CocoaLumberjackSwift.framework;
+			remoteRef = 01985F791BFF7E0400399D88 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01985F7C1BFF7E0400399D88 /* CocoaLumberjackSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CocoaLumberjackSwift.framework;
+			remoteRef = 01985F7B1BFF7E0400399D88 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01985F7E1BFF7E0400399D88 /* CocoaLumberjackSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CocoaLumberjackSwift.framework;
+			remoteRef = 01985F7D1BFF7E0400399D88 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01FEF3351BA74F46007E531C /* CocoaLumberjack.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CocoaLumberjack.framework;
+			remoteRef = 01FEF3341BA74F46007E531C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01FEF3371BA74F46007E531C /* CocoaLumberjackSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CocoaLumberjackSwift.framework;
+			remoteRef = 01FEF3361BA74F46007E531C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01FEF3391BA74F46007E531C /* CocoaLumberjack.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CocoaLumberjack.framework;
+			remoteRef = 01FEF3381BA74F46007E531C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01FEF33D1BA74F46007E531C /* libCocoaLumberjack.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCocoaLumberjack.a;
+			remoteRef = 01FEF33C1BA74F46007E531C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01FEF33F1BA74F46007E531C /* FmwkTest.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = FmwkTest.app;
+			remoteRef = 01FEF33E1BA74F46007E531C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01FEF3411BA74F46007E531C /* SwiftTest.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SwiftTest.app;
+			remoteRef = 01FEF3401BA74F46007E531C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01FEF3431BA74F46007E531C /* iOSSwiftTest.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = iOSSwiftTest.app;
+			remoteRef = 01FEF3421BA74F46007E531C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		01FEF3451BA74F46007E531C /* iOSLibStaticTest.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = iOSLibStaticTest.app;
+			remoteRef = 01FEF3441BA74F46007E531C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		013BA03C19991F9F00ACC1AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				013BA0711999274000ACC1AE /* AirTurnUIImages.xcassets in Resources */,
+				0181B5EF1BFCC941009650B7 /* LaunchScreen.storyboard in Resources */,
+				013BA04D19991F9F00ACC1AE /* Main.storyboard in Resources */,
+				013BA04F19991F9F00ACC1AE /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		016C7C6D1BAC779A00B1E06C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "script=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AirTurnInterface.framework/strip-frameworks.sh\"\nif [ -f \"$script\" ]; then\nbash \"$script\"\nfi";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		013BA03A19991F9F00ACC1AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				013BA04A19991F9F00ACC1AE /* ViewController.m in Sources */,
+				0175E0851BCC6F3400BB97B5 /* NBTableViewController.m in Sources */,
+				013BA0701999274000ACC1AE /* AirTurnUIConnectionController.m in Sources */,
+				013BA04719991F9F00ACC1AE /* AppDelegate.m in Sources */,
+				013BA04419991F9F00ACC1AE /* main.m in Sources */,
+				0175E0901BCC6F4000BB97B5 /* PlaygroundController.m in Sources */,
+				0175E0841BCC6F3400BB97B5 /* NBPopoverController.m in Sources */,
+				0175E0931BCC6F5000BB97B5 /* TestTableViewController.m in Sources */,
+				013BA0721999274000ACC1AE /* AirTurnUIPeripheralController.m in Sources */,
+				013BA0761999296900ACC1AE /* PortLabel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		01FEF3481BA74F61007E531C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CocoaLumberjack-iOS";
+			targetProxy = 01FEF3471BA74F61007E531C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		013BA04B19991F9F00ACC1AE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				013BA04C19991F9F00ACC1AE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0181B5ED1BFCC941009650B7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0181B5EE1BFCC941009650B7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		013BA05C19991F9F00ACC1AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		013BA05D19991F9F00ACC1AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		013BA05F19991F9F00ACC1AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../Framework-dynamic",
+				);
+				INFOPLIST_FILE = AirTurnExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.airturn.AirTurnExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		013BA06019991F9F00ACC1AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../Framework-dynamic",
+				);
+				INFOPLIST_FILE = AirTurnExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.airturn.AirTurnExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		013BA03919991F9F00ACC1AE /* Build configuration list for PBXProject "AirTurnExample.dynamic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				013BA05C19991F9F00ACC1AE /* Debug */,
+				013BA05D19991F9F00ACC1AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		013BA05E19991F9F00ACC1AE /* Build configuration list for PBXNativeTarget "AirTurnExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				013BA05F19991F9F00ACC1AE /* Debug */,
+				013BA06019991F9F00ACC1AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 013BA03619991F9F00ACC1AE /* Project object */;
+}
