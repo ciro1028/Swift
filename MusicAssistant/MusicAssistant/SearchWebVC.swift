@@ -221,6 +221,9 @@ class SearchWebVC: UIViewController {
         importedText = importedText.replacingOccurrences(of: "<pre class=\"js-tab-content js-copy-content\">", with: "")
         importedText = importedText.replacingOccurrences(of: "</pre>", with: "")
         importedText = importedText.replacingOccurrences(of: "</pre>", with: "")
+        importedText = importedText.replacingOccurrences(of: "[ch]", with: "")
+        importedText = importedText.replacingOccurrences(of: "[\\/ch]", with: "")
+        importedText = importedText.replacingOccurrences(of: "\\r\\n", with: "\r\n")
     }
     
     func getTabFromCifraClub() {
@@ -259,8 +262,8 @@ class SearchWebVC: UIViewController {
     //get song title
     func getSongTitle() {
         if getCurrentPage == "tabs.ultimate-guitar" {
-            if let startTitle = webSource.range(of: "'name': '"),
-                let endTitle = webSource.range(of: "'", range: startTitle.upperBound..<webSource.endIndex) {
+            if let startTitle = webSource.range(of: "song_name\":\""),
+                let endTitle = webSource.range(of: "\"", range: startTitle.upperBound..<webSource.endIndex) {
                 let substringTitle = webSource[startTitle.upperBound..<endTitle.lowerBound]
                 getCurrentTitle = substringTitle.capitalized
             } else {
@@ -296,8 +299,8 @@ class SearchWebVC: UIViewController {
     //get artist
     func getArtist() {
         if getCurrentPage == "tabs.ultimate-guitar" {
-            if let startArtist = webSource.range(of: "var name_art = '"),
-                let endArtist = webSource.range(of: "'", range: startArtist.upperBound..<webSource.endIndex) {
+            if let startArtist = webSource.range(of: "artist_name\":\""),
+                let endArtist = webSource.range(of: "\"", range: startArtist.upperBound..<webSource.endIndex) {
                 let substringArtist = webSource[startArtist.upperBound..<endArtist.lowerBound]
                 getCurrentArtist = substringArtist
             } else {

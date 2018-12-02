@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import StoreKit
+import MediaPlayer
+import Alamofire
+import SwiftyJSON
+import MediaPlayer
 
 var currentLyrics = ""
 var transferableSongTitle = String()
@@ -20,8 +25,17 @@ var transposeLyrics = String()
 var fontSize: CGFloat = 16.0
 var chordColor: UIColor = UIColor.blue
 var activeField: UITextField?
+var songID = String()
+var songDuration = Int()
+let myMediaPlayer = MPMusicPlayerApplicationController.applicationQueuePlayer()
+var timer : Timer?
+var count = 0
+var minCount = 0
+var selectA = 0.0
+var selectB = 0.0
+var repeatStatus = false
 
-class ViewSongVC: UIViewController{
+class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
     
     var matches2 = [String]()
     var tempMatches2 = [String]()
@@ -34,6 +48,17 @@ class ViewSongVC: UIViewController{
     @IBOutlet weak var optionalSearch: UISegmentedControl!
     @IBOutlet weak var transposeText: UIButton!
     @IBOutlet weak var colorsButton: UIButton!
+    @IBOutlet weak var checkUser: UIBarButtonItem!
+    @IBOutlet weak var playBar: UIView!
+    
+    @IBOutlet weak var songProgressBar: UISlider!
+    
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var minuteLabel: UILabel!
+    
+    @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var secondLabel: UILabel!
+    @IBOutlet weak var selectRepeatButton: UIButton!
     
     @IBAction func optionalSearchButton(_ sender: UISegmentedControl) {
         let searchWebViewController = self.storyboard?.instantiateViewController(withIdentifier: "searchWebVC") as! SearchWebVC
@@ -180,10 +205,209 @@ class ViewSongVC: UIViewController{
         colorsButton.layer.borderWidth = 1
         colorsButton.layer.borderColor = UIColor.black.cgColor
         
-        
+        getSongIdFromApple(songName: songTitle[myIndexForSection][myIndexForRow])
         
     }
+    
+    func requestPermission(){
+        SKCloudServiceController.requestAuthorization { (SKCloudServiceAuthorizationStatus) in
+            myMediaPlayer.setQueueWithStoreIDs([songID])
+        }
+        
+    }
+    
+    func requestStatus() -> String{
+        let status = SKCloudServiceController.authorizationStatus()
+        var type = ""
+        
+        switch status{
+        case .authorized:
+            type = "Authorized"
+        case .denied:
+            type = "Denied"
+        case .notDetermined:
+            type = "Not Determined"
+        case .restricted:
+            type = "Restricted"
+        }
+        return type
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        myMediaPlayer.stop()
+        resetTimeLabel()
+        timer?.invalidate()
+        repeatStatus = false
+    }
+    
+    // method to get the song id based on the current tab
+    func getSongIdFromApple(songName: String){
+        
+        let formattedTitle = songName.replacingOccurrences(of: " ", with: "+")
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllISzQzSlNVQzQifQ.eyJpc3MiOiJNQjVSMkpEVDRLIiwiaWF0IjoxNTQzNzc2NDYwLCJleHAiOjE1NDM4MTk2NjB9.bl6xtjmLy9tDo_EuKv8NxuwDa8JrApNjy2G-OHDpgTOzK3Fq5xeBP2QjYnw8vzTPhncLRzqvj-LITebLUwWu9w",
+            "Accept": "application/json"
+        ]
+        
+        let url = "https://api.music.apple.com/v1/catalog/us/search?term=\(formattedTitle)&types=songs"
+            
+        print(url)
+        
+        Alamofire.request(url, headers: headers).responseJSON { response in
+            if response.result.isSuccess {
+                
+                let songJSON : JSON = JSON(response.result.value!)
+                
+                let numOfOccurrences = songJSON["results"]["songs"]["data"].count
+                var indexOfRightSong = 0
+                
+                for i in 0..<numOfOccurrences {
+                    
+                    if songJSON["results"]["songs"]["data"][i]["attributes"]["artistName"].string == artist[myIndexForSection] {
+                        indexOfRightSong = i
+                    }
+                    
+                }
+                
+                songID = songJSON["results"]["songs"]["data"][indexOfRightSong]["id"].string!
+                songDuration = songJSON["results"]["songs"]["data"][indexOfRightSong]["attributes"]["durationInMillis"].int!
 
+            }
+            else {
+                print("COULDN'T FIND THE SONG")
+            }
+            
+        }
+        
+    }
+    
+    
+    @IBAction func playSongButton(_ sender: Any) {
+        requestPermission()
+        playBar.isHidden = false
+        
+        songProgressBar.minimumValue = 0.0
+        songProgressBar.maximumValue = Float(songDuration / 1000)
+        songProgressBar.value = 0
+    }
+    
+    @IBAction func playButton(_ sender: Any) {
+        myMediaPlayer.play()
+        pauseButton.isHidden = false
+        playButton.isHidden = true
+        setTimer()
+        
+    }
+    
+    func setTimer(){
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            
+            self.songProgressBar.value = Float(myMediaPlayer.currentPlaybackTime)
+        
+            
+            self.setSecondsLabel()
+            self.setMinuteLabel()
+            
+            count += 1
+            
+            if repeatStatus {
+                if myMediaPlayer.currentPlaybackTime >= selectB {
+                    myMediaPlayer.currentPlaybackTime = selectA
+                }
+            }
+            
+        }
+    }
+    
+    //method to set Minute Label
+    func setMinuteLabel(){
+        
+        minCount = Int(myMediaPlayer.currentPlaybackTime / 60)
+        
+        if minCount < 10 {
+            minuteLabel.text = "0\(String(minCount))"
+        } else {
+            minuteLabel.text = String(minCount)
+        }
+    }
+    
+    func setSecondsLabel(){
+        
+        if Int(myMediaPlayer.currentPlaybackTime) < 60 {
+            count = Int(myMediaPlayer.currentPlaybackTime)
+        } else {
+            count = Int(myMediaPlayer.currentPlaybackTime) % 60
+        }
+        
+        if count < 10 {
+            self.secondLabel.text = "0\(String(count))"
+        } else {
+            self.secondLabel.text = String(count)
+        }
+    }
+    
+    @IBAction func timeProgressBar(_ sender: Any) {
+        setAfterSliderChanged()
+    }
+    
+    
+    func setAfterSliderChanged(){
+        myMediaPlayer.currentPlaybackTime = TimeInterval(songProgressBar.value)
+        setSecondsLabel()
+        setMinuteLabel()
+    }
+    
+    @IBAction func pauseButton(_ sender: Any) {
+        myMediaPlayer.pause()
+        pauseButton.isHidden = true
+        playButton.isHidden = false
+        timer?.invalidate()
+    }
+    
+    func resetTimeLabel(){
+        secondLabel.text = "00"
+        minuteLabel.text = "00"
+        count = 0
+        minCount = 0
+    }
+    
+    @IBAction func closeButton(_ sender: Any) {
+        playBar.isHidden = true
+        myMediaPlayer.stop()
+        resetTimeLabel()
+        timer?.invalidate()
+        pauseButton.isHidden = true
+        playButton.isHidden = false
+        repeatStatus = false
+        selectA = 0.0
+        selectB = 0.0
+        selectRepeatButton.setTitle("Select A", for: .normal)
+    }
+    
+    @IBAction func selectRepeatButton(_ sender: Any) {
+        
+        selectRepeat()
+        
+    }
+    
+    func selectRepeat(){
+        
+        if selectRepeatButton.titleLabel?.text == "Select A" {
+            selectA = myMediaPlayer.currentPlaybackTime
+            selectRepeatButton.setTitle("Select B", for: .normal)
+        } else if selectRepeatButton.titleLabel!.text == "Select B"{
+            selectB = myMediaPlayer.currentPlaybackTime
+            selectRepeatButton.setTitle("Off", for: .normal)
+            repeatStatus = true
+        } else {
+            selectA = 0.0
+            selectB = 0.0
+            selectRepeatButton.setTitle("Select A", for: .normal)
+            repeatStatus = false
+        }
+        
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -554,4 +778,3 @@ class ViewSongVC: UIViewController{
         activeField = nil
     }
 }
-
