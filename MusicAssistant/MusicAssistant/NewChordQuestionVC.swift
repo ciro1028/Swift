@@ -12,10 +12,10 @@ class NewChordQuestionVC: UIViewController {
     
     @IBAction func yesButton(_ sender: UIButton) {
         let newChordViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "newChordVC") as! NewChordVC
-        self.addChildViewController(newChordViewController)
+        self.addChild(newChordViewController)
         newChordViewController.view.frame = self.view.frame
         self.view.addSubview(newChordViewController.view)
-        newChordViewController.didMove(toParentViewController: self)
+        newChordViewController.didMove(toParent: self)
         addNewChordCheck = true
     }
     @IBAction func noButton(_ sender: UIButton) {

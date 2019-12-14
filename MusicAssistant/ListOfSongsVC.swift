@@ -48,8 +48,8 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
         removeBackButtonFromHomeScreen()
         tableView.reloadData()
         tableView.sectionIndexBackgroundColor = UIColor.clear
-        tableView.sectionIndexColor = UIColor.white
-
+        tableView.sectionIndexColor = UIColor.orange
+        
         UIApplication.shared.isIdleTimerDisabled = true
         
         searchBarSetup()
@@ -76,8 +76,8 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-        searchController.searchBar.tintColor = UIColor.darkGray
-        searchController.searchBar.barTintColor = UIColor.brown
+        searchController.searchBar.tintColor = UIColor.black
+        searchController.searchBar.barTintColor = UIColor.white
         searchController.searchBar.showsScopeBar = false
         searchController.searchBar.scopeButtonTitles = ["Song Title", "Artist"]
         searchController.searchBar.selectedScopeButtonIndex = 0
@@ -146,6 +146,7 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
             return filteredArtist[section]
         }
     }
+
     
     //function to count number of sections
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -217,7 +218,7 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        view.tintColor = UIColor.black.withAlphaComponent(0.7)
         if let headerTitle = view as? UITableViewHeaderFooterView {
             headerTitle.textLabel?.textColor = UIColor.white
         }
@@ -422,8 +423,8 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
 
     
     //function to add delete button when row is swiped
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete{
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete{
             songTitle[indexPath.section].remove(at: indexPath.row)
             if songTitle[indexPath.section].count < 1 {
                 artist.remove(at: indexPath.section)

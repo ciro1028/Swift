@@ -27,7 +27,7 @@ var chordColor: UIColor = UIColor.blue
 var activeField: UITextField?
 var songID = String()
 var songDuration = Int()
-let myMediaPlayer = MPMusicPlayerApplicationController.applicationQueuePlayer()
+let myMediaPlayer = MPMusicPlayerApplicationController.applicationQueuePlayer
 var timer : Timer?
 var count = 0
 var minCount = 0
@@ -143,12 +143,12 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
     
     override var keyCommands: [UIKeyCommand]?{
         return[
-            UIKeyCommand(input: UIKeyInputLeftArrow, modifierFlags: [], action: #selector(self.LeftArrowPress(sender:))),
-            UIKeyCommand(input: UIKeyInputRightArrow, modifierFlags: [], action: #selector(self.RightArrowPress(sender:)))
+            UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: [], action: #selector(self.LeftArrowPress(sender:))),
+            UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags: [], action: #selector(self.RightArrowPress(sender:)))
         ]
     }
     
-    func LeftArrowPress(sender: UIKeyCommand){
+    @objc func LeftArrowPress(sender: UIKeyCommand){
         if (lyricsArea.contentOffset.y - 300) >= 0{
             
             lyricsArea.setContentOffset(CGPoint(x:0,y:lyricsArea.contentOffset.y - 300), animated: true);
@@ -158,7 +158,7 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         }
     }
     
-    func RightArrowPress(sender: UIKeyCommand){
+    @objc func RightArrowPress(sender: UIKeyCommand){
         if (lyricsArea.contentSize.height>(lyricsArea.frame.size.height + lyricsArea.contentOffset.y)){
             
             lyricsArea.setContentOffset(CGPoint(x:0,y:lyricsArea.contentOffset.y + 300), animated: true);
@@ -207,11 +207,13 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         
         getSongIdFromApple(songName: songTitle[myIndexForSection][myIndexForRow])
         
+        requestStatus()
+        
     }
     
     func requestPermission(){
         SKCloudServiceController.requestAuthorization { (SKCloudServiceAuthorizationStatus) in
-            myMediaPlayer.setQueueWithStoreIDs([songID])
+            myMediaPlayer.setQueue(with: [songID])
         }
         
     }
@@ -230,6 +232,7 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         case .restricted:
             type = "Restricted"
         }
+        print("STATUS OF AUTHORIZATION: \(type)")
         return type
     }
     
@@ -240,46 +243,54 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         repeatStatus = false
     }
     
-    // method to get the song id based on the current tab
+    
+    
+//    // method to get the song id based on the current tab
     func getSongIdFromApple(songName: String){
         
-        let formattedTitle = songName.replacingOccurrences(of: " ", with: "+")
         
+        
+
+        let formattedTitle = songName.replacingOccurrences(of: " ", with: "+")
+
         let headers: HTTPHeaders = [
-            "Authorization": "Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllISzQzSlNVQzQifQ.eyJpc3MiOiJNQjVSMkpEVDRLIiwiaWF0IjoxNTQzNzc2NDYwLCJleHAiOjE1NDM4MTk2NjB9.bl6xtjmLy9tDo_EuKv8NxuwDa8JrApNjy2G-OHDpgTOzK3Fq5xeBP2QjYnw8vzTPhncLRzqvj-LITebLUwWu9w",
+            "Authorization": "Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllISzQzSlNVQzQifQ.eyJpc3MiOiJNQjVSMkpEVDRLIiwiaWF0IjoxNTc2MjY4NjExLCJleHAiOjE1ODkyMjUwMTF9.syyQuUUvZv4fbbEasecayAqA7HTh7EjFv9bqtutDsQYiFD97UKquWJpdDuIAAtg5dV5uTHozLxvkIhQkWtC8Rw",
             "Accept": "application/json"
         ]
-        
+
         let url = "https://api.music.apple.com/v1/catalog/us/search?term=\(formattedTitle)&types=songs"
-            
-        print(url)
-        
+
+
+        print("THIS IS THE URL::::::: \(url)")
+
         Alamofire.request(url, headers: headers).responseJSON { response in
             if response.result.isSuccess {
-                
+
                 let songJSON : JSON = JSON(response.result.value!)
-                
+
                 let numOfOccurrences = songJSON["results"]["songs"]["data"].count
                 var indexOfRightSong = 0
-                
+
                 for i in 0..<numOfOccurrences {
-                    
+
                     if songJSON["results"]["songs"]["data"][i]["attributes"]["artistName"].string == artist[myIndexForSection] {
                         indexOfRightSong = i
                     }
-                    
+
                 }
-                
+
                 songID = songJSON["results"]["songs"]["data"][indexOfRightSong]["id"].string!
+
                 songDuration = songJSON["results"]["songs"]["data"][indexOfRightSong]["attributes"]["durationInMillis"].int!
+
 
             }
             else {
                 print("COULDN'T FIND THE SONG")
             }
-            
+
         }
-        
+
     }
     
     
@@ -415,16 +426,16 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        optionalSearch.selectedSegmentIndex = UISegmentedControlNoSegment
+        optionalSearch.selectedSegmentIndex = UISegmentedControl.noSegment
     }
     
-    func popToRoot(sender:UIBarButtonItem){
+    @objc func popToRoot(sender:UIBarButtonItem){
         let toListOfSongs = self.storyboard?.instantiateViewController(withIdentifier: "ListOfSongsVC") as! ListOfSongsVC
         self.navigationController?.pushViewController(toListOfSongs, animated: true)
         checkFirstLoad = true
     }
     
-    func longPressTapRecognizerMethod(recognizer: UILongPressGestureRecognizer){
+    @objc func longPressTapRecognizerMethod(recognizer: UILongPressGestureRecognizer){
         if recognizer.state == .ended{
             let myTextView = recognizer.view as! UITextView //sender is TextView
             let layoutManager = myTextView.layoutManager //Set layout manager
@@ -487,10 +498,10 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
                         if !check{
                             let newChordQuestionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "newChordQuestionVC") as! NewChordQuestionVC
                             passedChordName = chordString
-                            self.addChildViewController(newChordQuestionViewController)
+                            self.addChild(newChordQuestionViewController)
                             newChordQuestionViewController.view.frame = self.view.frame
                             self.view.addSubview(newChordQuestionViewController.view)
-                            newChordQuestionViewController.didMove(toParentViewController: self)
+                            newChordQuestionViewController.didMove(toParent: self)
                             importedTitle = songTitleLabel.text!
                             importedTab = lyricsArea.text!
                             importedArtist = artistLabel.text!
@@ -502,7 +513,7 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         }
     }
     
-    func tapRecognizerMethod(recognizer: UITapGestureRecognizer){
+    @objc func tapRecognizerMethod(recognizer: UITapGestureRecognizer){
         let myTextView = recognizer.view as! UITextView //sender is TextView
         let layoutManager = myTextView.layoutManager //Set layout manager
         
@@ -584,10 +595,10 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         
         let chordViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "chordVC") as! chordVC
         chordPlaceHolder = chord
-        self.addChildViewController(chordViewController)
+        self.addChild(chordViewController)
         chordViewController.view.frame = self.view.frame
         self.view.addSubview(chordViewController.view)
-        chordViewController.didMove(toParentViewController: self)
+        chordViewController.didMove(toParent: self)
         
     }
     
@@ -611,7 +622,7 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         let regex = try? NSRegularExpression(pattern: pattern, options: [])
         let range = NSMakeRange(0, lyricsToEdit.characters.count)
         let matches = (regex?.matches(in: lyricsToEdit, options: [], range: range))!
-        let attributedString = NSMutableAttributedString(string: lyricsToEdit, attributes: [NSFontAttributeName: UIFont(name: "CourierNewPSMT", size: fontSize)!])
+        let attributedString = NSMutableAttributedString(string: lyricsToEdit, attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "CourierNewPSMT", size: fontSize)!]))
         
         func matchesForRegexInText(regex: String, text: String) -> [String] {
             
@@ -655,9 +666,9 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         count = matches2.count - 1
         
         for match in matches.reversed(){
-            attributedString.setAttributes([NSFontAttributeName : UIFont.boldSystemFont(ofSize: fontSize), NSForegroundColorAttributeName : chordColor], range: match.rangeAt(0))
+            attributedString.setAttributes(convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font) : UIFont.boldSystemFont(ofSize: fontSize), convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor) : chordColor]), range: match.range(at: 0))
             
-            attributedString.replaceCharacters(in: match.rangeAt(0), with: newChords[count])
+            attributedString.replaceCharacters(in: match.range(at: 0), with: newChords[count])
             
             count = count - 1
         }
@@ -730,22 +741,22 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
     
     func registerForKeyboardNotifications(){
         //Adding notifies on keyboard appearing
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func deregisterFromKeyboardNotifications(){
         //Removing notifies on keyboard appearing
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func keyboardWasShown(notification: NSNotification){
+    @objc func keyboardWasShown(notification: NSNotification){
         //Need to calculate keyboard exact size due to Apple suggestions
         self.lyricsArea.isScrollEnabled = true
         var info = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
+        let keyboardSize = (info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: keyboardSize!.height, right: 0.0)
         
         self.lyricsArea.contentInset = contentInsets
         self.lyricsArea.scrollIndicatorInsets = contentInsets
@@ -759,11 +770,11 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         }
     }
     
-    func keyboardWillBeHidden(notification: NSNotification){
+    @objc func keyboardWillBeHidden(notification: NSNotification){
         //Once keyboard disappears, restore original positions
         var info = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
+        let keyboardSize = (info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: -keyboardSize!.height, right: 0.0)
         self.lyricsArea.contentInset = contentInsets
         self.lyricsArea.scrollIndicatorInsets = contentInsets
         self.view.endEditing(true)
@@ -777,4 +788,15 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
     func textFieldDidEndEditing(_ textField: UITextField){
         activeField = nil
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

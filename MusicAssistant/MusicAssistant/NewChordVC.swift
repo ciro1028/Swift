@@ -176,10 +176,10 @@ class NewChordVC: UIViewController {
     @IBAction func deleteButton(_ sender: UIButton) {
             newIndex = index
             let deleteVC = self.storyboard?.instantiateViewController(withIdentifier: "deleteVC") as! DeleteChordQuestionVC
-            self.addChildViewController(deleteVC)
+            self.addChild(deleteVC)
             deleteVC.view.frame = self.view.frame
             self.view.addSubview(deleteVC.view)
-            deleteVC.didMove(toParentViewController: self)
+            deleteVC.didMove(toParent: self)
     }
     
     func save(){

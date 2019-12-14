@@ -65,6 +65,8 @@ class SearchWebVC: UIViewController {
                         
             let url = URL(string: "https://www.google.com/#q=\(fixedSearchBarText)+tabs")
             webView.loadRequest(URLRequest(url: url!))
+            
+            print("Search: \(String(describing: url))")
         }
         getWebAddress()
         self.searchBar.resignFirstResponder()
@@ -105,7 +107,7 @@ class SearchWebVC: UIViewController {
                     if let startTitle = importedText.range(of: "E|"),
                         let endTitle = importedText.range(of: "</span></span>\n", range: startTitle.upperBound..<importedText.endIndex) {
                         let substringTitle = importedText[startTitle.upperBound..<endTitle.lowerBound]
-                        deletableTab = substringTitle
+                        deletableTab = String(substringTitle)
                         importedText = importedText.replacingCharacters(in: startTitle.lowerBound..<endTitle.upperBound, with: "")
                     } else {
                         print("invalid input - 7")
@@ -199,7 +201,7 @@ class SearchWebVC: UIViewController {
         if let startWeb = webAddress.range(of: "https://"),
             let endWeb = webAddress.range(of: ".com", range: startWeb.upperBound..<webAddress.endIndex) {
             let substringWeb = webAddress[startWeb.upperBound..<endWeb.lowerBound]
-            getCurrentPage = substringWeb
+            getCurrentPage = String(substringWeb)
         } else {
             print("invalid input - 0")
         }
@@ -210,7 +212,7 @@ class SearchWebVC: UIViewController {
         if let start = webSource.range(of: "\"wiki_tab\":{\"content\":\""),
             let end = webSource.range(of: ",\"revision_id", range: start.upperBound..<webSource.endIndex) {
             let substring = webSource[start.upperBound..<end.lowerBound]
-            importedText = substring
+            importedText = String(substring)
         } else {
             print("invalid input - 1")
         }
@@ -224,6 +226,11 @@ class SearchWebVC: UIViewController {
         importedText = importedText.replacingOccurrences(of: "[ch]", with: "")
         importedText = importedText.replacingOccurrences(of: "[\\/ch]", with: "")
         importedText = importedText.replacingOccurrences(of: "\\r\\n", with: "\r\n")
+        importedText = importedText.replacingOccurrences(of: "\\n", with: "\r\n")
+        importedText = importedText.replacingOccurrences(of: "\\/", with: "/")
+        
+        
+        
     }
     
     func getTabFromCifraClub() {
@@ -247,7 +254,7 @@ class SearchWebVC: UIViewController {
         if let start = webSource.range(of: "<pre>"),
             let end = webSource.range(of: "</pre>", range: start.upperBound..<webSource.endIndex) {
             let substring = webSource[start.upperBound..<end.lowerBound]
-            importedText = substring
+            importedText = String(substring)
         } else {
             print("invalid input - 4")
         }
@@ -290,6 +297,7 @@ class SearchWebVC: UIViewController {
                 getCurrentTitle = getCurrentTitle.replacingOccurrences(of: "\\u00EA", with: "ê")
                 getCurrentTitle = getCurrentTitle.replacingOccurrences(of: "\\u00E7", with: "ç")
                 getCurrentTitle = getCurrentTitle.replacingOccurrences(of: "\\x2D", with: "-")
+                getCurrentTitle = getCurrentTitle.replacingOccurrences(of: "\\u0020", with: " ")
             } else {
                 print("invalid input - 2")
             }
@@ -302,14 +310,14 @@ class SearchWebVC: UIViewController {
             if let startArtist = webSource.range(of: "artist_name\":\""),
                 let endArtist = webSource.range(of: "\"", range: startArtist.upperBound..<webSource.endIndex) {
                 let substringArtist = webSource[startArtist.upperBound..<endArtist.lowerBound]
-                getCurrentArtist = substringArtist
+                getCurrentArtist = String(substringArtist)
             } else {
                 print("invalid input - 3")
             }
         }
         if getCurrentPage == "www.cifraclub" {
-            if let startArtist = webSource.range(of: "artist: '"),
-                let endArtist = webSource.range(of: "'", range: startArtist.upperBound..<webSource.endIndex) {
+            if let startArtist = webSource.range(of: "\">Mais acessadas de "),
+                let endArtist = webSource.range(of: "</a>", range: startArtist.upperBound..<webSource.endIndex) {
                 let substringArtist = webSource[startArtist.upperBound..<endArtist.lowerBound]
                 getCurrentArtist = substringArtist.replacingOccurrences(of: "\\x20", with: " ")
                 getCurrentArtist = getCurrentArtist.replacingOccurrences(of: "\\u00E1", with: "á")
