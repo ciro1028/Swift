@@ -26,8 +26,15 @@ class AddSongVC: UIViewController {
     @IBOutlet weak var addSongButton: UIButton!
     @IBOutlet weak var importFromWebButton: UIButton!
     
+    @IBOutlet weak var replaceView: UIView!
+    
+    @IBOutlet weak var findText: UITextField!
+    @IBOutlet weak var replaceText: UITextField!
+    
     var songIntoArray = [String]()
     var lyrics = String()
+    
+    // Mark: ViewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +56,7 @@ class AddSongVC: UIViewController {
                 
         if importedTab != ""{
             lyricsInput.text = importedTab
+            print("Imported Text: \(importedTab)")
             titleInput.text = importedTitle
             artistInput.text = importedArtist
         }
@@ -62,8 +70,8 @@ class AddSongVC: UIViewController {
             addNewChordCheck = false
         }
         if !addNewSongCheck {
-            addSongButton.setTitle("Save", for: .normal)
-            importFromWebButton.isHidden = true
+            //addSongButton.setTitle("Save", for: .normal)
+            //importFromWebButton.isHidden = true
         }else{
             if !fromImportedSongCheck{
                 lyricsInput.text = ""
@@ -72,16 +80,48 @@ class AddSongVC: UIViewController {
             }
             fromImportedSongCheck = false
         }
-        
     }
     
-    @IBAction func addSongButton(_ sender: UIButton) {
+    
+    @IBAction func addButton(_ sender: UIBarButtonItem) {
         songIntoArray = lyricsInput.text!.components(separatedBy: "\n")
         identifyChords(songIntoArray: songIntoArray)
         completeSaveLyrics()
+        let songTitles = songTitle.description
+        let artistTitles = artist.description
+        let keysTitles = keys.description
+        saveSongsArtistsList(fileName: "Song Titles", fileContent: songTitles)
+        saveSongsArtistsList(fileName: "Artist Titles", fileContent: artistTitles)
+        saveSongsArtistsList(fileName: "Keys Titles", fileContent: keysTitles)
         comingFromNewChord = true
         addNewSongCheck = true
     }
+    
+    @IBAction func doneButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: {
+            print("Dismiss Add Song")
+        })
+    }
+    
+    @IBAction func openReplaceTabButton(_ sender: UIBarButtonItem) {
+        if replaceView.isHidden {
+            replaceView.isHidden = false
+        } else {
+            replaceView.isHidden = true
+        }
+    }
+    
+    @IBAction func replaceButton(_ sender: UIButton) {
+        
+        if findText.text != nil {
+            let toReplace = findText.text!
+            let replaceBy = replaceText.text!
+            let newText = lyricsInput.text!
+            lyricsInput.text = newText.replacingOccurrences(of: toReplace, with: replaceBy)
+        }
+        replaceView.isHidden = true
+    }
+    
     
     //give up first responder at touch screen
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -255,16 +295,65 @@ class AddSongVC: UIViewController {
     //write on file or create file
     func writeOnFile() {
         if titleInput.text != nil {
-            
             let tabFile = titleInput.text!
             let documentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let fileURL = documentDirURL.appendingPathComponent(tabFile).appendingPathExtension("txt")
+
             let writeString = lyricsInput.text!
+
             do{
                 try writeString.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
             } catch let error as NSError {
                 print(error)
             }
+        }
+    }
+    
+    func saveSongsArtistsList(fileName: String, fileContent: String){
+        //Delete file first
+        let fileNameToDelete = "\(fileName).txt"
+               var filePath = ""
+               
+               // Fine documents directory on device
+                let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
+               
+               if dirs.count > 0 {
+                   let dir = dirs[0] //documents directory
+                   filePath = dir.appendingFormat("/" + fileNameToDelete)
+        
+               } else {
+                   print("Could not find local directory to store file")
+                   return
+               }
+               
+               
+               do {
+                    let fileManager = FileManager.default
+                   
+                   // Check if file exists
+                   if fileManager.fileExists(atPath: filePath) {
+                       // Delete file
+                       try fileManager.removeItem(atPath: filePath)
+                   } else {
+                       print("File does not exist")
+                   }
+        
+               }
+               catch let error as NSError {
+                   print("An error took place: \(error)")
+               }
+        
+        //Save file
+        let tabFile = fileName
+        let documentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let fileURL = documentDirURL.appendingPathComponent(tabFile).appendingPathExtension("txt")
+
+        let writeString = fileContent
+
+        do{
+            try writeString.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+        } catch let error as NSError {
+            print(error)
         }
     }
     

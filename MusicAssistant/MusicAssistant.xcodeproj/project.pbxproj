@@ -12,7 +12,12 @@
 		401966981F17B37F00C40172 /* NewChordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401966971F17B37F00C40172 /* NewChordVC.swift */; };
 		4028E6AE1F8BD09D00025CDB /* PortLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4028E6AD1F8BD09D00025CDB /* PortLabel.swift */; };
 		4071D61B1F8A6A4B0039E9FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4071D61A1F8A6A4B0039E9FD /* AppDelegate.swift */; };
+		407318DC23A6872A00E34A8C /* trigger_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 407318DB23A6872A00E34A8C /* trigger_img.png */; };
+		407318E023A68C8500E34A8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 407318DF23A68C8500E34A8C /* Assets.xcassets */; };
+		407318E223A6A1B500E34A8C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407318E123A6A1B500E34A8C /* MenuViewController.swift */; };
+		407318E423AB04FF00E34A8C /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407318E323AB04FF00E34A8C /* SlideInTransition.swift */; };
 		407345E71F119DD8001FC56F /* Chords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407345E61F119DD8001FC56F /* Chords.swift */; };
+		40ABE84023ABF39F008F24C2 /* BugReportVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ABE83F23ABF39F008F24C2 /* BugReportVCViewController.swift */; };
 		40B15C611F16E03F0094BA7F /* chordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B15C601F16E03F0094BA7F /* chordVC.swift */; };
 		40B15C651F17AE820094BA7F /* NewChordQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B15C641F17AE820094BA7F /* NewChordQuestionVC.swift */; };
 		40CBD94622A017D4000C445F /* IQTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CBD93022A017D4000C445F /* IQTextView.swift */; };
@@ -39,6 +44,7 @@
 		40CFE7FE1F069514001EBDA8 /* ListOfSongsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CFE7FD1F069514001EBDA8 /* ListOfSongsVC.swift */; };
 		40CFE8021F06AECB001EBDA8 /* AddSongVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CFE8011F06AECB001EBDA8 /* AddSongVC.swift */; };
 		40CFE8041F0B0F58001EBDA8 /* SearchWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CFE8031F0B0F58001EBDA8 /* SearchWebVC.swift */; };
+		40E97BDA23AEDF2E0098E282 /* PlaylistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E97BD923AEDF2E0098E282 /* PlaylistVC.swift */; };
 		40EC33211F226C32004B0EBA /* C.txt in Resources */ = {isa = PBXBuildFile; fileRef = 40EC33201F226C32004B0EBA /* C.txt */; };
 		40EC33231F229A22004B0EBA /* C#.txt in Resources */ = {isa = PBXBuildFile; fileRef = 40EC33221F229A22004B0EBA /* C#.txt */; };
 		40EC33251F229AC2004B0EBA /* D.txt in Resources */ = {isa = PBXBuildFile; fileRef = 40EC33241F229AC2004B0EBA /* D.txt */; };
@@ -77,7 +83,13 @@
 		401966971F17B37F00C40172 /* NewChordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChordVC.swift; sourceTree = "<group>"; };
 		4028E6AD1F8BD09D00025CDB /* PortLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortLabel.swift; sourceTree = "<group>"; };
 		4071D61A1F8A6A4B0039E9FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		407318DB23A6872A00E34A8C /* trigger_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = trigger_img.png; path = MusicAssistant/Assets.xcassets/BlackDot.imageset/trigger_img.png; sourceTree = "<group>"; };
+		407318DF23A68C8500E34A8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Downloads/SideMenu-master/SideMenuTutorial/Assets.xcassets"; sourceTree = "<group>"; };
+		407318E123A6A1B500E34A8C /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		407318E323AB04FF00E34A8C /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
 		407345E61F119DD8001FC56F /* Chords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chords.swift; sourceTree = "<group>"; };
+		40ABE83F23ABF39F008F24C2 /* BugReportVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportVCViewController.swift; sourceTree = "<group>"; };
+		40ABE84123ABFE55008F24C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Downloads/SideMenu-master/SideMenuTutorial/Assets.xcassets"; sourceTree = "<group>"; };
 		40B15C601F16E03F0094BA7F /* chordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chordVC.swift; sourceTree = "<group>"; };
 		40B15C641F17AE820094BA7F /* NewChordQuestionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChordQuestionVC.swift; sourceTree = "<group>"; };
 		40CBD93022A017D4000C445F /* IQTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQTextView.swift; sourceTree = "<group>"; };
@@ -107,6 +119,7 @@
 		40CFE7FD1F069514001EBDA8 /* ListOfSongsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListOfSongsVC.swift; path = ../ListOfSongsVC.swift; sourceTree = "<group>"; };
 		40CFE8011F06AECB001EBDA8 /* AddSongVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSongVC.swift; sourceTree = "<group>"; };
 		40CFE8031F0B0F58001EBDA8 /* SearchWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchWebVC.swift; sourceTree = "<group>"; };
+		40E97BD923AEDF2E0098E282 /* PlaylistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistVC.swift; sourceTree = "<group>"; };
 		40EC33201F226C32004B0EBA /* C.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = C.txt; path = "txt files/C.txt"; sourceTree = "<group>"; };
 		40EC33221F229A22004B0EBA /* C#.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "C#.txt"; path = "txt files/C#.txt"; sourceTree = "<group>"; };
 		40EC33241F229AC2004B0EBA /* D.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = D.txt; path = "txt files/D.txt"; sourceTree = "<group>"; };
@@ -211,6 +224,7 @@
 			children = (
 				40CFE7E71F0692E4001EBDA8 /* MusicAssistant */,
 				40CFE7E61F0692E4001EBDA8 /* Products */,
+				407318DB23A6872A00E34A8C /* trigger_img.png */,
 				A123924F9A4FB32C30F6A418 /* Pods */,
 				D30327728239F0198917A9B1 /* Frameworks */,
 			);
@@ -238,7 +252,12 @@
 				40135B2D1F25971100E76370 /* DeleteChordQuestionVC.swift */,
 				40CFE8031F0B0F58001EBDA8 /* SearchWebVC.swift */,
 				4028E6AD1F8BD09D00025CDB /* PortLabel.swift */,
+				407318E123A6A1B500E34A8C /* MenuViewController.swift */,
 				4014052F1F3140B80035C4FF /* ColorPalletVC.swift */,
+				407318E323AB04FF00E34A8C /* SlideInTransition.swift */,
+				40ABE83F23ABF39F008F24C2 /* BugReportVCViewController.swift */,
+				40E97BD923AEDF2E0098E282 /* PlaylistVC.swift */,
+				407318DF23A68C8500E34A8C /* Assets.xcassets */,
 				40CFE7FA1F0692F6001EBDA8 /* Supporting Files */,
 			);
 			path = MusicAssistant;
@@ -247,6 +266,7 @@
 		40CFE7FA1F0692F6001EBDA8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				40ABE84123ABFE55008F24C2 /* Assets.xcassets */,
 				40EC33201F226C32004B0EBA /* C.txt */,
 				40EC33221F229A22004B0EBA /* C#.txt */,
 				40EC33381F22A34C004B0EBA /* Db.txt */,
@@ -360,8 +380,10 @@
 				40EC33211F226C32004B0EBA /* C.txt in Resources */,
 				40EC332B1F229E54004B0EBA /* F.txt in Resources */,
 				40EC33311F22A036004B0EBA /* G#.txt in Resources */,
+				407318E023A68C8500E34A8C /* Assets.xcassets in Resources */,
 				40EC332F1F229F0B004B0EBA /* G.txt in Resources */,
 				40EC33351F22A2C5004B0EBA /* A#.txt in Resources */,
+				407318DC23A6872A00E34A8C /* trigger_img.png in Resources */,
 				40EC33371F22A30D004B0EBA /* B.txt in Resources */,
 				40EC33291F229CDD004B0EBA /* E.txt in Resources */,
 				40EC33251F229AC2004B0EBA /* D.txt in Resources */,
@@ -444,6 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40CBD95622A017D4000C445F /* IQNSArray+Sort.swift in Sources */,
+				407318E223A6A1B500E34A8C /* MenuViewController.swift in Sources */,
 				40CBD94B22A017D4000C445F /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				40CBD94E22A017D4000C445F /* IQKeyboardManagerConstants.swift in Sources */,
 				40CBD95022A017D4000C445F /* IQKeyboardReturnKeyHandler.swift in Sources */,
@@ -451,10 +474,12 @@
 				401405301F3140B80035C4FF /* ColorPalletVC.swift in Sources */,
 				40CBD95222A017D4000C445F /* IQUIScrollView+Additions.swift in Sources */,
 				40CBD94C22A017D4000C445F /* IQInvocation.swift in Sources */,
+				407318E423AB04FF00E34A8C /* SlideInTransition.swift in Sources */,
 				40CBD94722A017D4000C445F /* IQPreviousNextView.swift in Sources */,
 				40B15C651F17AE820094BA7F /* NewChordQuestionVC.swift in Sources */,
 				401966981F17B37F00C40172 /* NewChordVC.swift in Sources */,
 				40CFE7EB1F0692E4001EBDA8 /* ViewSongVC.swift in Sources */,
+				40ABE84023ABF39F008F24C2 /* BugReportVCViewController.swift in Sources */,
 				40CFE7FE1F069514001EBDA8 /* ListOfSongsVC.swift in Sources */,
 				40CBD95422A017D4000C445F /* IQUITextFieldView+Additions.swift in Sources */,
 				407345E71F119DD8001FC56F /* Chords.swift in Sources */,
@@ -462,6 +487,7 @@
 				40CBD94822A017D4000C445F /* IQTitleBarButtonItem.swift in Sources */,
 				40CBD94A22A017D4000C445F /* IQToolbar.swift in Sources */,
 				40CBD94922A017D4000C445F /* IQBarButtonItem.swift in Sources */,
+				40E97BDA23AEDF2E0098E282 /* PlaylistVC.swift in Sources */,
 				40CBD95322A017D4000C445F /* IQUIViewController+Additions.swift in Sources */,
 				40135B2E1F25971100E76370 /* DeleteChordQuestionVC.swift in Sources */,
 				40CBD95122A017D4000C445F /* IQKeyboardManager.swift in Sources */,

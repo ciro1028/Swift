@@ -10,11 +10,18 @@ import UIKit
 
 class ColorPalletVC: UIViewController {
     
+    @IBOutlet var palletView: UIView!
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        dismiss(animated: true, completion: {
+            print("Pallet View Dismissed")
+        })
+    }
+    
     @IBAction func blueButton(_ sender: UIButton) {
         chordColor = UIColor.blue
     }
 
-    
     @IBAction func redButton(_ sender: UIButton) {
         chordColor = UIColor.red
         performSegue(withIdentifier: "fromColortoVC", sender: self)

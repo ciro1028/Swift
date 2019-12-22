@@ -23,10 +23,6 @@ var chords = [String: [String]]()
 
 class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
     
-    @IBAction func plusSong(_ sender: UIBarButtonItem) {
-        addNewSongCheck = true
-    }
-    
     let searchController = UISearchController(searchResultsController: nil)
     
     var filteredSongs = [[String]]()
@@ -39,9 +35,11 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
     var indexOfLetters = [Int]()
     var indexPathSelected = IndexPath()
     var numOfSongs = Int()
+    let transition = SlideInTransition()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //restore()
         setupChordNames()
         saveFileOnSystem()
         orderAlphabetically()
@@ -54,6 +52,67 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
         
         searchBarSetup()
         indexSections()
+        
+    }
+    
+    func restore(){
+        var tabFile = "Artist Titles"
+        let documentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        var fileURL = documentDirURL.appendingPathComponent(tabFile).appendingPathExtension("txt")
+        do {
+            var readString = try String(contentsOf: fileURL)
+            let defaultsArtist = UserDefaults.standard
+            defaultsArtist.set(readString, forKey: "Artist")
+            readString = readString.replacingOccurrences(of: "\"", with: "")
+            readString = readString.replacingOccurrences(of: "\\", with: "")
+            readString = readString.replacingOccurrences(of: "[", with: "")
+            readString = readString.replacingOccurrences(of: "]", with: "")
+            var artistArray = [String]()
+            artistArray = readString.components(separatedBy: ", ")
+            artist = artistArray
+            print("Artist: \(readString)")
+
+        } catch let error as NSError {
+            print("Error: \(error)")
+        }
+        tabFile = "Song Titles"
+        fileURL = documentDirURL.appendingPathComponent(tabFile).appendingPathExtension("txt")
+        do {
+            var readString = try String(contentsOf: fileURL)
+
+            readString = readString.replacingOccurrences(of: "[[", with: "")
+            readString = readString.replacingOccurrences(of: "]]", with: "")
+            readString = readString.replacingOccurrences(of: "\"", with: "")
+            readString = readString.replacingOccurrences(of: "\\", with: "")
+            var songArray = [String]()
+            songArray = readString.components(separatedBy: "], [")
+            let defaultsArtist = UserDefaults.standard
+            defaultsArtist.set(artist, forKey: "Artist")
+            var songArrayofArrays = [[String]]()
+            for i in 0..<songArray.count{
+                let tempArray = songArray[i].components(separatedBy: ", ")
+                songArrayofArrays.append(tempArray)
+            }
+            songTitle = songArrayofArrays
+            let defaults = UserDefaults.standard
+            defaults.set(songTitle, forKey: "SongList")
+            
+        } catch let error as NSError {
+            print("Error: \(error)")
+        }
+
+    }
+    
+    @IBAction func plusSong(_ sender: UIBarButtonItem) {
+        addNewSongCheck = true
+    }
+    
+    @available(iOS 13.0, *)
+    @IBAction func didTapMenu(_ sender: UIBarButtonItem) {
+        guard let menuViewController = storyboard?.instantiateViewController(identifier: "MenuViewController") else { return }
+        menuViewController.modalPresentationStyle = .overCurrentContext
+        menuViewController.transitioningDelegate = self
+        present(menuViewController, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,7 +130,6 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
     }
     
     func searchBarSetup(){
-        
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
@@ -81,11 +139,9 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
         searchController.searchBar.showsScopeBar = false
         searchController.searchBar.scopeButtonTitles = ["Song Title", "Artist"]
         searchController.searchBar.selectedScopeButtonIndex = 0
-        
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        
         let searchText = searchController.searchBar.text!
         filteredSongs = songTitle
         filteredArtist = artist
@@ -99,13 +155,11 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
     }
     
     func filterTableView(ind:Int,text:String) {
-        
         switch ind {
         case selectedScope.title.rawValue:
             for i in 0..<songTitle.count{
                 filteredSongs[i] = songTitle[i].filter( { $0.lowercased().contains(searchController.searchBar.text!.lowercased()) })
             }
-            
             filteredArtist = [String]()
             for i in 0..<filteredSongs.count{
                 if !filteredSongs[i].isEmpty{
@@ -345,7 +399,6 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
             artist = defaultArtist.stringArray(forKey: "Artist") ?? [String]()
             chords = retrieveDictionary(withKey: "Chords")!
             chordShapes = retrieveDictionary2(withKey: "ChordShapes")!
-            
         }
             
         else {
@@ -438,6 +491,14 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
             defaults.set(songTitle, forKey: "SongList")
             let defaultsArtist = UserDefaults.standard
             defaultsArtist.set(artist, forKey: "Artist")
+            let viewSongVC = AddSongVC()
+            let songTitles = songTitle.description
+            viewSongVC.saveSongsArtistsList(fileName: "Song Titles", fileContent: songTitles)
+            let artistTitles = artist.description
+            viewSongVC.saveSongsArtistsList(fileName: "Artist Titles", fileContent: artistTitles)
+            let keysTitles = keys.description
+            viewSongVC.saveSongsArtistsList(fileName: "Keys Titles", fileContent: keysTitles)
+            
         }
     }
     
@@ -461,5 +522,20 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
         for i in 0..<songTitle.count{
             songTitle[i].sort{$0 < $1}
         }
+    }
+    
+
+}
+
+//For the Animation
+extension ListOfSongsVC: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.isPresenting = true
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.isPresenting = false
+        return transition
     }
 }

@@ -71,6 +71,7 @@ class NewChordVC: UIViewController {
     @IBOutlet weak var stringStatusB: UILabel!
     @IBOutlet weak var stringStatusEe: UILabel!
     
+    @IBOutlet weak var roundView: UIView!
     @IBOutlet weak var frentboardCounter: UILabel!
     @IBOutlet weak var chordAdded: UILabel!
     
@@ -94,6 +95,7 @@ class NewChordVC: UIViewController {
             copyInfoFromOriginalChord()
             chordLabel.text = passedChordName
             newChordTextField.isEnabled = false
+            newChordTextField.alpha = 1.0
         }
         
         if checkNewChordFromLongPress{
@@ -105,13 +107,17 @@ class NewChordVC: UIViewController {
         }
         
         self.view.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
+        roundView.layer.cornerRadius = 16.0
+        roundView.clipsToBounds = true
         songArray = importedTab.components(separatedBy: "\n")
+        newChordTextField.alpha = 1.0
     }
     
     @IBAction func newChordButton(_ sender: UIButton) {
         newChordTextField.isHidden = false
         newChordButton.isHidden = true
         newChordTextField.isEnabled = true
+        newChordTextField.alpha = 1.0
         checkComeFromEditChord = false
         newChordTextField.becomeFirstResponder()
         addNewChordCheck = true
@@ -226,6 +232,7 @@ class NewChordVC: UIViewController {
                 chords[originalChordFamily]!.append(passedChordName)
                 chordShapes[originalChordFamily]!.append(chordShape)
                 newChordTextField.isEnabled = false
+                newChordTextField.alpha = 1.0
             }
         }
         resetDots()

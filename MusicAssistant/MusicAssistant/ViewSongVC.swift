@@ -34,6 +34,8 @@ var minCount = 0
 var selectA = 0.0
 var selectB = 0.0
 var repeatStatus = false
+var settingsFile = Array<Array<String>>()
+var currentSongSettings = Array<String>()
 
 class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
     
@@ -47,7 +49,6 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
     @IBOutlet weak var lyricsArea: UITextView!
     @IBOutlet weak var optionalSearch: UISegmentedControl!
     @IBOutlet weak var transposeText: UIButton!
-    @IBOutlet weak var colorsButton: UIButton!
     @IBOutlet weak var checkUser: UIBarButtonItem!
     @IBOutlet weak var playBar: UIView!
     
@@ -59,6 +60,8 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var secondLabel: UILabel!
     @IBOutlet weak var selectRepeatButton: UIButton!
+    @IBOutlet weak var songNotFoundLabel: UILabel!
+    
     
     @IBAction func optionalSearchButton(_ sender: UISegmentedControl) {
         let searchWebViewController = self.storyboard?.instantiateViewController(withIdentifier: "searchWebVC") as! SearchWebVC
@@ -66,27 +69,31 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
             let searchString = artistLabel.text!
             searchWebViewController.importedSearch = searchString.replacingOccurrences(of: " ", with: "-")
             searchWebViewController.check = false
-            self.navigationController?.pushViewController(searchWebViewController, animated: true)
         } else {
             searchWebViewController.importedSearch = artistLabel.text!
             searchWebViewController.check = true
-            self.navigationController?.pushViewController(searchWebViewController, animated: true)
         }
+        self.navigationController?.pushViewController(searchWebViewController, animated: true)
     }
     
-    @IBAction func editButton(_ sender: UIButton) {
+    
+    @IBAction func editButton(_ sender: UIBarButtonItem) {
         let editVC = self.storyboard?.instantiateViewController(withIdentifier: "addSongVC") as! AddSongVC
-        addNewSongCheck = false
-        importedTitle = songTitleLabel.text!
-        importedArtist = artistLabel.text!
-        importedTab = lyricsArea.text!
-        self.navigationController?.pushViewController(editVC, animated: true)
+               addNewSongCheck = false
+               importedTitle = songTitleLabel.text!
+               importedArtist = artistLabel.text!
+               importedTab = lyricsArea.text!
+               self.navigationController?.pushViewController(editVC, animated: true)
     }
+    
     
     @IBAction func fontMinus(_ sender: UIButton) {
         if fontSize != 6.0{
             fontSize -= 1.0
         }
+        getSettingsFile()
+        appendSongSetting()
+        writeOnSettings()
         findFile()
         identifyChords(lyricsToEdit: lyricsArea.text!)
     }
@@ -95,8 +102,89 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         if fontSize != 30.0{
             fontSize += 1.0
         }
+        getSettingsFile()
+        appendSongSetting()
+        writeOnSettings()
         findFile()
         identifyChords(lyricsToEdit: lyricsArea.text!)
+    }
+    
+    func getFontSizeFromFile(){
+        for i in 0..<settingsFile.count{
+            if songTitleLabel.text! == settingsFile[i][0]{
+                if artistLabel.text! == settingsFile[i][1]{
+                    currentSongSettings = settingsFile[i]
+                    fontSize = CGFloat(Double(currentSongSettings[2])!)
+                    print("Font Size: \(fontSize)")
+                }
+            }
+        }
+    }
+    
+    // Get the file and turn it into an array
+    func getSettingsFile(){
+        settingsFile.removeAll()
+        let tabFile = "Settings"
+        var emptyFile = false
+        let documentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let fileURL = documentDirURL.appendingPathComponent(tabFile).appendingPathExtension("txt")
+        print("File into Array 1: \(settingsFile)")
+        do {
+            var readString = try String(contentsOf: fileURL)
+            if readString == "" {
+                emptyFile = true
+                fontSize = 16.0
+            }
+            readString = readString.replacingOccurrences(of: "\"", with: "")
+            readString = readString.replacingOccurrences(of: "\\", with: "")
+            if !emptyFile {
+                var tempArrayOfSettings = readString.components(separatedBy: "], [")
+                tempArrayOfSettings[0] = tempArrayOfSettings[0].replacingOccurrences(of: "[[", with: "")
+                tempArrayOfSettings[tempArrayOfSettings.count - 1] = tempArrayOfSettings[tempArrayOfSettings.count - 1].replacingOccurrences(of: "]]", with: "")
+                for i in 0..<tempArrayOfSettings.count{
+                    settingsFile.append(tempArrayOfSettings[i].components(separatedBy: ", "))
+                }
+            }
+        } catch let error as NSError {
+            print("Error: \(error)")
+        }
+    }
+    
+    //add or edit current song into the array
+    func appendSongSetting(){
+
+        currentSongSettings = [songTitleLabel.text!, artistLabel.text!, String(Double(fontSize))]
+        var testIfExists = false
+        var currentSongPossition = Int()
+        for i in 0..<settingsFile.count{
+            if songTitleLabel.text! == settingsFile[i][0]{
+                if artistLabel.text! == settingsFile[i][1]{
+                    testIfExists = true
+                    currentSongPossition = i
+                }
+            }
+        }
+        if testIfExists {
+            settingsFile[currentSongPossition] = currentSongSettings
+        } else {
+            settingsFile.append(currentSongSettings)
+        }
+    }
+    
+    //save updated file
+    func writeOnSettings() {
+
+        let tabFile = "Settings"
+        let documentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let fileURL = documentDirURL.appendingPathComponent(tabFile).appendingPathExtension("txt")
+        
+        let writeString = settingsFile.description
+        
+        do{
+            try writeString.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+        } catch let error as NSError {
+            print(error)
+        }
     }
     
     @IBAction func transposeMinusButton(_ sender: UIButton) {
@@ -116,10 +204,6 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         checkTransposePlus = false
         checkSaveOrSettings = true
         checkTransposePlus = false
-    }
-    
-    @IBAction func colorsButton(_ sender: Any) {
-
     }
     
     @IBAction func originalTone(_ sender: UIButton) {
@@ -151,7 +235,7 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
     @objc func LeftArrowPress(sender: UIKeyCommand){
         if (lyricsArea.contentOffset.y - 300) >= 0{
             
-            lyricsArea.setContentOffset(CGPoint(x:0,y:lyricsArea.contentOffset.y - 300), animated: true);
+            lyricsArea.setContentOffset(CGPoint(x:0,y:lyricsArea.contentOffset.y - 200), animated: true);
         }
         else{
             lyricsArea.setContentOffset(.zero, animated: true)
@@ -161,7 +245,7 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
     @objc func RightArrowPress(sender: UIKeyCommand){
         if (lyricsArea.contentSize.height>(lyricsArea.frame.size.height + lyricsArea.contentOffset.y)){
             
-            lyricsArea.setContentOffset(CGPoint(x:0,y:lyricsArea.contentOffset.y + 300), animated: true);
+            lyricsArea.setContentOffset(CGPoint(x:0,y:lyricsArea.contentOffset.y + 200), animated: true);
         }
     }
     
@@ -177,9 +261,11 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
             songTitleLabel.text = songTitle[myIndexForSection][myIndexForRow]
             artistLabel.text = artist[myIndexForSection]
         }
-        
-        
+        fontSize = 16.0
+        getSettingsFile()
+        getFontSizeFromFile()
         findFile()
+        
         identifyChords(lyricsToEdit: lyricsArea.text!)
         
         let tapped = UITapGestureRecognizer(target: self, action: #selector(ViewSongVC.tapRecognizerMethod(recognizer:)))
@@ -194,19 +280,15 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         let myBackButton:UIButton = UIButton.init(type: .custom)
         myBackButton.addTarget(self, action: #selector(ViewSongVC.popToRoot(sender:)), for: .touchUpInside)
         myBackButton.setTitle("Home", for: .normal)
-        myBackButton.setTitleColor(.blue, for: .normal)
+        myBackButton.setTitleColor(.white, for: .normal)
         myBackButton.sizeToFit()
         
         //Add back button to navigationBar as left Button
         let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
         self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
         
-        colorsButton.layer.cornerRadius = 5
-        colorsButton.layer.borderWidth = 1
-        colorsButton.layer.borderColor = UIColor.black.cgColor
-        
         getSongIdFromApple(songName: songTitle[myIndexForSection][myIndexForRow])
-        
+
         requestStatus()
         
     }
@@ -215,7 +297,6 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         SKCloudServiceController.requestAuthorization { (SKCloudServiceAuthorizationStatus) in
             myMediaPlayer.setQueue(with: [songID])
         }
-        
     }
     
     func requestStatus() -> String{
@@ -241,24 +322,48 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         resetTimeLabel()
         timer?.invalidate()
         repeatStatus = false
+        self.songProgressBar.isHidden = false
+        self.songNotFoundLabel.isHidden = true
     }
-    
-    
     
 //    // method to get the song id based on the current tab
     func getSongIdFromApple(songName: String){
-        
-        
-        
 
-        let formattedTitle = songName.replacingOccurrences(of: " ", with: "+")
+        let formattedTitle = songTitleLabel.text!.replacingOccurrences(of: " ", with: "+")
+        let formattedArtist = artistLabel.text!.replacingOccurrences(of: " ", with: "+")
 
         let headers: HTTPHeaders = [
             "Authorization": "Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllISzQzSlNVQzQifQ.eyJpc3MiOiJNQjVSMkpEVDRLIiwiaWF0IjoxNTc2MjY4NjExLCJleHAiOjE1ODkyMjUwMTF9.syyQuUUvZv4fbbEasecayAqA7HTh7EjFv9bqtutDsQYiFD97UKquWJpdDuIAAtg5dV5uTHozLxvkIhQkWtC8Rw",
             "Accept": "application/json"
         ]
 
-        let url = "https://api.music.apple.com/v1/catalog/us/search?term=\(formattedTitle)&types=songs"
+        var url = "https://api.music.apple.com/v1/catalog/us/search?term=\(formattedTitle)+\(formattedArtist)&types=songs"
+        
+        url = url.replacingOccurrences(of: "’", with: "")
+        url = url.replacingOccurrences(of: "ç", with: "c")
+        url = url.replacingOccurrences(of: "ã", with: "a")
+        url = url.replacingOccurrences(of: "á", with: "a")
+        url = url.replacingOccurrences(of: "â", with: "a")
+        url = url.replacingOccurrences(of: "à", with: "a")
+        url = url.replacingOccurrences(of: "é", with: "e")
+        url = url.replacingOccurrences(of: "ê", with: "e")
+        url = url.replacingOccurrences(of: "í", with: "i")
+        url = url.replacingOccurrences(of: "ó", with: "o")
+        url = url.replacingOccurrences(of: "ô", with: "o")
+        url = url.replacingOccurrences(of: "õ", with: "o")
+        url = url.replacingOccurrences(of: "Ú", with: "U")
+        url = url.replacingOccurrences(of: "Ç", with: "C")
+        url = url.replacingOccurrences(of: "Ã", with: "A")
+        url = url.replacingOccurrences(of: "Á", with: "A")
+        url = url.replacingOccurrences(of: "Â", with: "A")
+        url = url.replacingOccurrences(of: "É", with: "E")
+        url = url.replacingOccurrences(of: "Ê", with: "E")
+        url = url.replacingOccurrences(of: "Í", with: "I")
+        url = url.replacingOccurrences(of: "Ó", with: "O")
+        url = url.replacingOccurrences(of: "Ô", with: "O")
+        url = url.replacingOccurrences(of: "Õ", with: "O")
+        url = url.replacingOccurrences(of: "Ú", with: "U")
+        url = url.replacingOccurrences(of: "À", with: "A")
 
 
         print("THIS IS THE URL::::::: \(url)")
@@ -276,14 +381,15 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
                     if songJSON["results"]["songs"]["data"][i]["attributes"]["artistName"].string == artist[myIndexForSection] {
                         indexOfRightSong = i
                     }
-
                 }
-
-                songID = songJSON["results"]["songs"]["data"][indexOfRightSong]["id"].string!
-
-                songDuration = songJSON["results"]["songs"]["data"][indexOfRightSong]["attributes"]["durationInMillis"].int!
-
-
+                if songJSON["results"]["songs"]["data"].count != 0 {
+                    songID = songJSON["results"]["songs"]["data"][indexOfRightSong]["id"].string!
+                    songDuration = songJSON["results"]["songs"]["data"][indexOfRightSong]["attributes"]["durationInMillis"].int!
+                } else {
+                    songID = ""
+                    self.songProgressBar.isHidden = true
+                    self.songNotFoundLabel.isHidden = false
+                }
             }
             else {
                 print("COULDN'T FIND THE SONG")
@@ -293,22 +399,20 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
 
     }
     
-    
-    @IBAction func playSongButton(_ sender: Any) {
+    @IBAction func playSongButton(_ sender: UIBarButtonItem) {
         requestPermission()
         playBar.isHidden = false
-        
         songProgressBar.minimumValue = 0.0
         songProgressBar.maximumValue = Float(songDuration / 1000)
         songProgressBar.value = 0
     }
+    
     
     @IBAction func playButton(_ sender: Any) {
         myMediaPlayer.play()
         pauseButton.isHidden = false
         playButton.isHidden = true
         setTimer()
-        
     }
     
     func setTimer(){
@@ -316,7 +420,6 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
             
             self.songProgressBar.value = Float(myMediaPlayer.currentPlaybackTime)
         
-            
             self.setSecondsLabel()
             self.setMinuteLabel()
             
@@ -608,6 +711,8 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         let fileURL = documentDirURL.appendingPathComponent(fileName).appendingPathExtension("txt")
         do {
             let readString = try String(contentsOf: fileURL)
+            
+
             lyricsArea.text = readString
             currentLyrics = readString
             transposeLyrics = readString
@@ -800,3 +905,5 @@ fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [Stri
 fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
 	return input.rawValue
 }
+
+

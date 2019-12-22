@@ -42,6 +42,11 @@ class SearchWebVC: UIViewController {
             searchOnUltimateGuitar(searchItem: importedSearch)
         }
     }
+    @IBAction func closeButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true) {
+            print("Dismiss Web Search")
+        }
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -228,9 +233,7 @@ class SearchWebVC: UIViewController {
         importedText = importedText.replacingOccurrences(of: "\\r\\n", with: "\r\n")
         importedText = importedText.replacingOccurrences(of: "\\n", with: "\r\n")
         importedText = importedText.replacingOccurrences(of: "\\/", with: "/")
-        
-        
-        
+     
     }
     
     func getTabFromCifraClub() {
@@ -346,6 +349,9 @@ class SearchWebVC: UIViewController {
         importedTitle = getCurrentTitle
         importedArtist = getCurrentArtist
         
+        print(importedTab)
+        print(importedTitle)
+        print("Artist: \(importedArtist)")
         self.navigationController?.pushViewController(addSongViewController, animated: true)
         
     }
