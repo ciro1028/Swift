@@ -246,18 +246,19 @@ class chordVC: UIViewController {
         let start = chordPlaceHolder.index(chordPlaceHolder.startIndex, offsetBy: 0)
         let end = chordPlaceHolder.index(start, offsetBy: 1)
         let range = start..<end
-        let firstChar = chordPlaceHolder.substring(with: range)
+        //let firstChar = chordPlaceHolder.substring(with: range)
+        let firstChar = String(chordPlaceHolder[range])
         var additionalString = String()
         fretNumberLabel.text = ""
         var additionToTheString = 0
         var biggestNumber = Int()
         
-        if chordPlaceHolder.characters.count > 1{
+        if chordPlaceHolder.count > 1{
             let start2 = chordPlaceHolder.index(chordPlaceHolder.startIndex, offsetBy: 1)
             let end2 = chordPlaceHolder.index(start2, offsetBy: 1)
             let range2 = start2..<end2
-            let firstChar2 = chordPlaceHolder.substring(with: range2)
-            
+            //let firstChar2 = chordPlaceHolder.substring(with: range2)
+            let firstChar2 = String(chordPlaceHolder[range2])
             if firstChar2 == "b"{
                 additionalString = "b"
             } else if firstChar2 == "#" {

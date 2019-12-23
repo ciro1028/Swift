@@ -95,12 +95,7 @@ class AddSongVC: UIViewController {
         saveSongsArtistsList(fileName: "Keys Titles", fileContent: keysTitles)
         comingFromNewChord = true
         addNewSongCheck = true
-    }
-    
-    @IBAction func doneButton(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: {
-            print("Dismiss Add Song")
-        })
+        
     }
     
     @IBAction func openReplaceTabButton(_ sender: UIBarButtonItem) {
@@ -168,7 +163,8 @@ class AddSongVC: UIViewController {
                         let startOfWord = songArrayLine[countOfEachWordOfTheLine].index(songArrayLine[countOfEachWordOfTheLine].startIndex, offsetBy: 0)
                         let endOfWord = songArrayLine[countOfEachWordOfTheLine].index(startOfWord, offsetBy: 1)
                         let rangeOfWord = startOfWord..<endOfWord
-                        let firstCharOfWord = songArrayLine[countOfEachWordOfTheLine].substring(with: rangeOfWord)
+                        //let firstCharOfWord = songArrayLine[countOfEachWordOfTheLine].substring(with: rangeOfWord)
+                        let firstCharOfWord = String(songArrayLine[countOfEachWordOfTheLine][rangeOfWord])
                         if firstCharOfWord == key{
                             
                             for i in 0..<value.count{
@@ -185,13 +181,14 @@ class AddSongVC: UIViewController {
                     }
                     
                     if !chordFound{
-                        if songArrayLine[countOfEachWordOfTheLine].characters.count >= 2 {
+                        if songArrayLine[countOfEachWordOfTheLine].count >= 2 {
                             //check first two character for flat or sharp
                             for (key, value) in chords{
                                 let startOfWord = songArrayLine[countOfEachWordOfTheLine].index(songArrayLine[countOfEachWordOfTheLine].startIndex, offsetBy: 0)
                                 let endOfWord = songArrayLine[countOfEachWordOfTheLine].index(startOfWord, offsetBy: 2)
                                 let rangeOfWord = startOfWord..<endOfWord
-                                let firstCharOfWord = songArrayLine[countOfEachWordOfTheLine].substring(with: rangeOfWord)
+                                //let firstCharOfWord = songArrayLine[countOfEachWordOfTheLine].substring(with: rangeOfWord)
+                                let firstCharOfWord = String(songArrayLine[countOfEachWordOfTheLine][rangeOfWord])
                                 
                                 if firstCharOfWord == key{
                                     for i in 0..<value.count{
@@ -227,7 +224,8 @@ class AddSongVC: UIViewController {
                 writeOnFile()
                 let listVC = self.storyboard?.instantiateViewController(withIdentifier: "ListOfSongsVC") as! ListOfSongsVC
                 self.navigationController?.pushViewController(listVC, animated: true)
-
+                
+                listVC.newAddedArtist = artistInput.text!
                 addNewSongCheck = false
             }
         } else {
@@ -248,6 +246,7 @@ class AddSongVC: UIViewController {
             
             let viewSongVC = self.storyboard?.instantiateViewController(withIdentifier: "viewSongVC") as! ViewSongVC
             self.navigationController?.pushViewController(viewSongVC, animated: false)
+            
             checkForNewChord = true
             transferableArtist = artistInput.text!
             transferableSongTitle = titleInput.text!
@@ -255,6 +254,8 @@ class AddSongVC: UIViewController {
             addNewSongCheck = true
         }
     }
+    
+    
     
     //when button clicked save title and artist into array
     func saveSongAndArtist(){

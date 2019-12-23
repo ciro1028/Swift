@@ -51,17 +51,13 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
     @IBOutlet weak var transposeText: UIButton!
     @IBOutlet weak var checkUser: UIBarButtonItem!
     @IBOutlet weak var playBar: UIView!
-    
     @IBOutlet weak var songProgressBar: UISlider!
-    
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var minuteLabel: UILabel!
-    
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var secondLabel: UILabel!
     @IBOutlet weak var selectRepeatButton: UIButton!
     @IBOutlet weak var songNotFoundLabel: UILabel!
-    
     
     @IBAction func optionalSearchButton(_ sender: UISegmentedControl) {
         let searchWebViewController = self.storyboard?.instantiateViewController(withIdentifier: "searchWebVC") as! SearchWebVC
@@ -75,7 +71,6 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         }
         self.navigationController?.pushViewController(searchWebViewController, animated: true)
     }
-    
     
     @IBAction func editButton(_ sender: UIBarButtonItem) {
         let editVC = self.storyboard?.instantiateViewController(withIdentifier: "addSongVC") as! AddSongVC
@@ -115,7 +110,6 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
                 if artistLabel.text! == settingsFile[i][1]{
                     currentSongSettings = settingsFile[i]
                     fontSize = CGFloat(Double(currentSongSettings[2])!)
-                    print("Font Size: \(fontSize)")
                 }
             }
         }
@@ -128,7 +122,6 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         var emptyFile = false
         let documentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         let fileURL = documentDirURL.appendingPathComponent(tabFile).appendingPathExtension("txt")
-        print("File into Array 1: \(settingsFile)")
         do {
             var readString = try String(contentsOf: fileURL)
             if readString == "" {
@@ -289,7 +282,7 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         
         getSongIdFromApple(songName: songTitle[myIndexForSection][myIndexForRow])
 
-        requestStatus()
+        //requestStatus()
         
     }
     
@@ -299,23 +292,23 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         }
     }
     
-    func requestStatus() -> String{
-        let status = SKCloudServiceController.authorizationStatus()
-        var type = ""
-        
-        switch status{
-        case .authorized:
-            type = "Authorized"
-        case .denied:
-            type = "Denied"
-        case .notDetermined:
-            type = "Not Determined"
-        case .restricted:
-            type = "Restricted"
-        }
-        print("STATUS OF AUTHORIZATION: \(type)")
-        return type
-    }
+//    func requestStatus() -> String{
+//        let status = SKCloudServiceController.authorizationStatus()
+//        var type = ""
+//        
+//        switch status{
+//        case .authorized:
+//            type = "Authorized"
+//        case .denied:
+//            type = "Denied"
+//        case .notDetermined:
+//            type = "Not Determined"
+//        case .restricted:
+//            type = "Restricted"
+//        }
+//        print("STATUS OF AUTHORIZATION: \(type)")
+//        return type
+//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         myMediaPlayer.stop()
@@ -364,7 +357,6 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         url = url.replacingOccurrences(of: "Õ", with: "O")
         url = url.replacingOccurrences(of: "Ú", with: "U")
         url = url.replacingOccurrences(of: "À", with: "A")
-
 
         print("THIS IS THE URL::::::: \(url)")
 
@@ -525,7 +517,7 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        lyricsArea.setContentOffset(.zero, animated: false)
+        //lyricsArea.setContentOffset(.zero, animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -725,7 +717,7 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         var count = 0
         let pattern = "\\<(.*?)\\>"
         let regex = try? NSRegularExpression(pattern: pattern, options: [])
-        let range = NSMakeRange(0, lyricsToEdit.characters.count)
+        let range = NSMakeRange(0, lyricsToEdit.count)
         let matches = (regex?.matches(in: lyricsToEdit, options: [], range: range))!
         let attributedString = NSMutableAttributedString(string: lyricsToEdit, attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont(name: "CourierNewPSMT", size: fontSize)!]))
         
@@ -859,7 +851,7 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
     @objc func keyboardWasShown(notification: NSNotification){
         //Need to calculate keyboard exact size due to Apple suggestions
         self.lyricsArea.isScrollEnabled = true
-        var info = notification.userInfo!
+        let info = notification.userInfo!
         let keyboardSize = (info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
         let contentInsets : UIEdgeInsets = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: keyboardSize!.height, right: 0.0)
         
@@ -877,7 +869,7 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
     
     @objc func keyboardWillBeHidden(notification: NSNotification){
         //Once keyboard disappears, restore original positions
-        var info = notification.userInfo!
+        let info = notification.userInfo!
         let keyboardSize = (info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
         let contentInsets : UIEdgeInsets = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: -keyboardSize!.height, right: 0.0)
         self.lyricsArea.contentInset = contentInsets

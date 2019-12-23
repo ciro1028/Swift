@@ -12,7 +12,6 @@
 		401966981F17B37F00C40172 /* NewChordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401966971F17B37F00C40172 /* NewChordVC.swift */; };
 		4028E6AE1F8BD09D00025CDB /* PortLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4028E6AD1F8BD09D00025CDB /* PortLabel.swift */; };
 		4071D61B1F8A6A4B0039E9FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4071D61A1F8A6A4B0039E9FD /* AppDelegate.swift */; };
-		407318DC23A6872A00E34A8C /* trigger_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 407318DB23A6872A00E34A8C /* trigger_img.png */; };
 		407318E023A68C8500E34A8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 407318DF23A68C8500E34A8C /* Assets.xcassets */; };
 		407318E223A6A1B500E34A8C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407318E123A6A1B500E34A8C /* MenuViewController.swift */; };
 		407318E423AB04FF00E34A8C /* SlideInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407318E323AB04FF00E34A8C /* SlideInTransition.swift */; };
@@ -83,7 +82,6 @@
 		401966971F17B37F00C40172 /* NewChordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChordVC.swift; sourceTree = "<group>"; };
 		4028E6AD1F8BD09D00025CDB /* PortLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortLabel.swift; sourceTree = "<group>"; };
 		4071D61A1F8A6A4B0039E9FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		407318DB23A6872A00E34A8C /* trigger_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = trigger_img.png; path = MusicAssistant/Assets.xcassets/BlackDot.imageset/trigger_img.png; sourceTree = "<group>"; };
 		407318DF23A68C8500E34A8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Downloads/SideMenu-master/SideMenuTutorial/Assets.xcassets"; sourceTree = "<group>"; };
 		407318E123A6A1B500E34A8C /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		407318E323AB04FF00E34A8C /* SlideInTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInTransition.swift; sourceTree = "<group>"; };
@@ -224,7 +222,6 @@
 			children = (
 				40CFE7E71F0692E4001EBDA8 /* MusicAssistant */,
 				40CFE7E61F0692E4001EBDA8 /* Products */,
-				407318DB23A6872A00E34A8C /* trigger_img.png */,
 				A123924F9A4FB32C30F6A418 /* Pods */,
 				D30327728239F0198917A9B1 /* Frameworks */,
 			);
@@ -341,23 +338,22 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Ciro;
 				TargetAttributes = {
 					40CFE7E41F0692E4001EBDA8 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = MB5R2JDT4K;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = 40CFE7E01F0692E4001EBDA8 /* Build configuration list for PBXProject "MusicAssistant" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -383,7 +379,6 @@
 				407318E023A68C8500E34A8C /* Assets.xcassets in Resources */,
 				40EC332F1F229F0B004B0EBA /* G.txt in Resources */,
 				40EC33351F22A2C5004B0EBA /* A#.txt in Resources */,
-				407318DC23A6872A00E34A8C /* trigger_img.png in Resources */,
 				40EC33371F22A30D004B0EBA /* B.txt in Resources */,
 				40EC33291F229CDD004B0EBA /* E.txt in Resources */,
 				40EC33251F229AC2004B0EBA /* D.txt in Resources */,
@@ -526,6 +521,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -585,6 +581,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -650,8 +647,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Ciro.MusicAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -671,8 +668,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Ciro.MusicAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

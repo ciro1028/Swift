@@ -25,12 +25,6 @@ class BugReportVCViewController: UIViewController {
         writeOnFile()
     }
     
-  
-    @IBAction func doneButton(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: {
-            print("Dismiss")
-        })
-    }
     
     func writeOnFile() {
         if bugText.text != nil {

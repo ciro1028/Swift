@@ -36,6 +36,7 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
     var indexPathSelected = IndexPath()
     var numOfSongs = Int()
     let transition = SlideInTransition()
+    var newAddedArtist = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,9 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
         
         searchBarSetup()
         indexSections()
+        
+        let img = UIImage(named: "mahogany-background")
+        navigationController?.navigationBar.setBackgroundImage(img, for: .default)
         
     }
     
@@ -127,6 +131,17 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
         } else {
             searchController.searchBar.placeholder = "No songs available to search."
         }
+    }
+    
+    //Get Artist index to make tableview scroll to right place after adding song
+    func getIndexOfArtist() -> Int{
+        var artistIndex = Int()
+        for i in 0..<artist.count{
+            if newAddedArtist == artist[i]{
+                artistIndex = i
+            }
+        }
+        return artistIndex
     }
     
     func searchBarSetup(){
@@ -224,10 +239,9 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         indexPathSelected = indexPath
         if filteredSongs.isEmpty{
-            
             myIndexForSection = indexPath.section
             myIndexForRow = indexPath.row
-            
+            print("Index Path: \(indexPath)")
         } else {
             myIndexForSection = indexOfArtists[indexPath.section]
             indexOfSongs = [Int]()
@@ -287,8 +301,7 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
             let start = artist[i].index(artist[i].startIndex, offsetBy: 0)
             let end = artist[i].index(start, offsetBy: 1)
             let range = start..<end
-            let firstLetter = artist[i].substring(with: range)
-            
+            let firstLetter = String(artist[i][range])
             firstLetterOfEachArtist.append(firstLetter)
         }
         
@@ -471,6 +484,11 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
         if checkFirstLoad{
             indexPathSelected = IndexPath(row: myIndexForRow, section: myIndexForSection)
             tableView.scrollToRow(at: indexPathSelected, at: .top, animated: false)
+        }
+        if !newAddedArtist.isEmpty {
+            let indePath = IndexPath(row: 0, section: getIndexOfArtist())
+            tableView.scrollToRow(at: indePath, at: .top, animated: false)
+            newAddedArtist = String()
         }
     }
 

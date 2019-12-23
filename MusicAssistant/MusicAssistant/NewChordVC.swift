@@ -211,18 +211,19 @@ class NewChordVC: UIViewController {
                 let start = passedChordName.index(passedChordName.startIndex, offsetBy: 0)
                 let end = passedChordName.index(start, offsetBy: 1)
                 let range = start..<end
-                let firstChar = passedChordName.substring(with: range)
+                //let firstChar = passedChordName.substring(with: range)
+                let firstChar = String(passedChordName[range])
                 var additionalString = String()
                 
                 originalChordName = passedChordName
                 originalChordFamily = "\(firstChar)\(additionalString)"
                 
-                if passedChordName.characters.count > 1{
+                if passedChordName.count > 1{
                     let start2 = passedChordName.index(passedChordName.startIndex, offsetBy: 1)
                     let end2 = passedChordName.index(start2, offsetBy: 1)
                     let range2 = start2..<end2
-                    let firstChar2 = passedChordName.substring(with: range2)
-                    
+                    //let firstChar2 = passedChordName.substring(with: range2)
+                    let firstChar2 = String(passedChordName[range2])
                     if firstChar2 == "b"{
                         additionalString = "b"
                     } else if firstChar2 == "#" {
@@ -387,14 +388,16 @@ class NewChordVC: UIViewController {
         let start = chordName.index(chordName.startIndex, offsetBy: 0)
         let end = chordName.index(start, offsetBy: 1)
         let range = start..<end
-        let firstChar = chordName.substring(with: range)
+        //let firstChar = chordName.substring(with: range)
+        let firstChar = String(chordName[range])
         var additionalString = String()
         
-        if chordName.characters.count > 1{
+        if chordName.count > 1{
             let start2 = chordName.index(chordName.startIndex, offsetBy: 1)
             let end2 = chordName.index(start2, offsetBy: 1)
             let range2 = start2..<end2
-            let firstChar2 = chordName.substring(with: range2)
+            //let firstChar2 = chordName.substring(with: range2)
+            let firstChar2 = String(chordName[range2])
             
             if firstChar2 == "b"{
                 additionalString = "b"
