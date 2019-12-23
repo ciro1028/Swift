@@ -1,0 +1,18 @@
+{
+  "iOS" : [
+    {
+      "hash" : "de04b1be2167ef77431b40dfb20397ab9d8f0bb8b77d9bf866a67e90d0dda0dd",
+      "name" : "AirTurn"
+    }
+  ],
+  "commitish" : "v0.2",
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "Mac" : [
+
+  ]
+}

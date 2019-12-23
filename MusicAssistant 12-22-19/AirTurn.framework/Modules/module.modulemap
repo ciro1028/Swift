@@ -1,0 +1,11 @@
+framework module AirTurn {
+  umbrella header "AirTurn.h"
+
+  export *
+  module * { export * }
+}
+
+module AirTurn.Swift {
+    header "AirTurn-Swift.h"
+    requires objc
+}
