@@ -268,20 +268,8 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(ViewSongVC.longPressTapRecognizerMethod(recognizer:)))
         lyricsArea.addGestureRecognizer(longPress)
         
-        //Create back button of type custom because it was going back to newChordQuestion
-        self.navigationController?.setNavigationBarHidden(false, animated:false)
-        let myBackButton:UIButton = UIButton.init(type: .custom)
-        myBackButton.addTarget(self, action: #selector(ViewSongVC.popToRoot(sender:)), for: .touchUpInside)
-        myBackButton.setTitle("Home", for: .normal)
-        myBackButton.setTitleColor(.white, for: .normal)
-        myBackButton.sizeToFit()
-        
-        //Add back button to navigationBar as left Button
-        let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
-        self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
-        
         getSongIdFromApple(songName: songTitle[myIndexForSection][myIndexForRow])
-
+        passingIndex = "[\(myIndexForSection), \(myIndexForRow)]"
         //requestStatus()
         
     }
@@ -317,6 +305,7 @@ class ViewSongVC: UIViewController, MPMediaPickerControllerDelegate{
         repeatStatus = false
         self.songProgressBar.isHidden = false
         self.songNotFoundLabel.isHidden = true
+        
     }
     
 //    // method to get the song id based on the current tab

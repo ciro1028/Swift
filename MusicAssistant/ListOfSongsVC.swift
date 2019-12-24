@@ -59,6 +59,10 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
         
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     func restore(){
         var tabFile = "Artist Titles"
         let documentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -241,7 +245,6 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
         if filteredSongs.isEmpty{
             myIndexForSection = indexPath.section
             myIndexForRow = indexPath.row
-            print("Index Path: \(indexPath)")
         } else {
             myIndexForSection = indexOfArtists[indexPath.section]
             indexOfSongs = [Int]()
@@ -252,7 +255,6 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
                     }
                 }
             }
-            
             myIndexForRow = indexOfSongs[indexPath.row]
         }
         performSegue(withIdentifier: "songViewSegue", sender: self)
@@ -518,6 +520,41 @@ class ListOfSongsVC: UITableViewController, UISearchResultsUpdating {
             viewSongVC.saveSongsArtistsList(fileName: "Keys Titles", fileContent: keysTitles)
             
         }
+        removeFile(name: songTitle[indexPath.section][indexPath.row])
+    }
+    
+    func removeFile(name: String){
+        let fileNameToDelete = "\(name).txt"
+               var filePath = ""
+               
+               // Find documents directory on device
+                let dirs : [String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)
+               
+               if dirs.count > 0 {
+                   let dir = dirs[0] //documents directory
+                   filePath = dir.appendingFormat("/" + fileNameToDelete)
+                   print("Local path = \(filePath)")
+        
+               } else {
+                   print("Could not find local directory to store file")
+                   return
+               }
+               
+               do {
+                    let fileManager = FileManager.default
+                   
+                   // Check if file exists
+                   if fileManager.fileExists(atPath: filePath) {
+                       // Delete file
+                       try fileManager.removeItem(atPath: filePath)
+                   } else {
+                       print("File does not exist")
+                   }
+        
+               }
+               catch let error as NSError {
+                   print("An error took place: \(error)")
+               }
     }
     
     //function to order alphabetically

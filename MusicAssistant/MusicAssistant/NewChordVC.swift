@@ -211,7 +211,6 @@ class NewChordVC: UIViewController {
                 let start = passedChordName.index(passedChordName.startIndex, offsetBy: 0)
                 let end = passedChordName.index(start, offsetBy: 1)
                 let range = start..<end
-                //let firstChar = passedChordName.substring(with: range)
                 let firstChar = String(passedChordName[range])
                 var additionalString = String()
                 
@@ -222,7 +221,6 @@ class NewChordVC: UIViewController {
                     let start2 = passedChordName.index(passedChordName.startIndex, offsetBy: 1)
                     let end2 = passedChordName.index(start2, offsetBy: 1)
                     let range2 = start2..<end2
-                    //let firstChar2 = passedChordName.substring(with: range2)
                     let firstChar2 = String(passedChordName[range2])
                     if firstChar2 == "b"{
                         additionalString = "b"
@@ -230,6 +228,8 @@ class NewChordVC: UIViewController {
                         additionalString = "#"
                     }
                 }
+                print("Chord Name: \(passedChordName)")
+                print("Chor Shape: \(chordShape)")
                 chords[originalChordFamily]!.append(passedChordName)
                 chordShapes[originalChordFamily]!.append(chordShape)
                 newChordTextField.isEnabled = false

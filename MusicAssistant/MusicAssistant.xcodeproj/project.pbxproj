@@ -44,6 +44,10 @@
 		40CFE8021F06AECB001EBDA8 /* AddSongVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CFE8011F06AECB001EBDA8 /* AddSongVC.swift */; };
 		40CFE8041F0B0F58001EBDA8 /* SearchWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CFE8031F0B0F58001EBDA8 /* SearchWebVC.swift */; };
 		40E97BDA23AEDF2E0098E282 /* PlaylistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E97BD923AEDF2E0098E282 /* PlaylistVC.swift */; };
+		40E97BE023B14CEF0098E282 /* NavigationControllerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E97BDF23B14CEF0098E282 /* NavigationControllerVC.swift */; };
+		40E97BE223B169190098E282 /* addPlaylistVCTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E97BE123B169190098E282 /* addPlaylistVCTableViewController.swift */; };
+		40E97BE423B185160098E282 /* AddPlaylistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E97BE323B185160098E282 /* AddPlaylistVC.swift */; };
+		40E97BE623B19F2A0098E282 /* SelectedPlaylistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E97BE523B19F2A0098E282 /* SelectedPlaylistVC.swift */; };
 		40EC33211F226C32004B0EBA /* C.txt in Resources */ = {isa = PBXBuildFile; fileRef = 40EC33201F226C32004B0EBA /* C.txt */; };
 		40EC33231F229A22004B0EBA /* C#.txt in Resources */ = {isa = PBXBuildFile; fileRef = 40EC33221F229A22004B0EBA /* C#.txt */; };
 		40EC33251F229AC2004B0EBA /* D.txt in Resources */ = {isa = PBXBuildFile; fileRef = 40EC33241F229AC2004B0EBA /* D.txt */; };
@@ -118,6 +122,10 @@
 		40CFE8011F06AECB001EBDA8 /* AddSongVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSongVC.swift; sourceTree = "<group>"; };
 		40CFE8031F0B0F58001EBDA8 /* SearchWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchWebVC.swift; sourceTree = "<group>"; };
 		40E97BD923AEDF2E0098E282 /* PlaylistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistVC.swift; sourceTree = "<group>"; };
+		40E97BDF23B14CEF0098E282 /* NavigationControllerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerVC.swift; sourceTree = "<group>"; };
+		40E97BE123B169190098E282 /* addPlaylistVCTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addPlaylistVCTableViewController.swift; sourceTree = "<group>"; };
+		40E97BE323B185160098E282 /* AddPlaylistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaylistVC.swift; sourceTree = "<group>"; };
+		40E97BE523B19F2A0098E282 /* SelectedPlaylistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPlaylistVC.swift; sourceTree = "<group>"; };
 		40EC33201F226C32004B0EBA /* C.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = C.txt; path = "txt files/C.txt"; sourceTree = "<group>"; };
 		40EC33221F229A22004B0EBA /* C#.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "C#.txt"; path = "txt files/C#.txt"; sourceTree = "<group>"; };
 		40EC33241F229AC2004B0EBA /* D.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = D.txt; path = "txt files/D.txt"; sourceTree = "<group>"; };
@@ -254,6 +262,10 @@
 				407318E323AB04FF00E34A8C /* SlideInTransition.swift */,
 				40ABE83F23ABF39F008F24C2 /* BugReportVCViewController.swift */,
 				40E97BD923AEDF2E0098E282 /* PlaylistVC.swift */,
+				40E97BE123B169190098E282 /* addPlaylistVCTableViewController.swift */,
+				40E97BDF23B14CEF0098E282 /* NavigationControllerVC.swift */,
+				40E97BE323B185160098E282 /* AddPlaylistVC.swift */,
+				40E97BE523B19F2A0098E282 /* SelectedPlaylistVC.swift */,
 				407318DF23A68C8500E34A8C /* Assets.xcassets */,
 				40CFE7FA1F0692F6001EBDA8 /* Supporting Files */,
 			);
@@ -460,12 +472,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E97BE423B185160098E282 /* AddPlaylistVC.swift in Sources */,
 				40CBD95622A017D4000C445F /* IQNSArray+Sort.swift in Sources */,
 				407318E223A6A1B500E34A8C /* MenuViewController.swift in Sources */,
 				40CBD94B22A017D4000C445F /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				40CBD94E22A017D4000C445F /* IQKeyboardManagerConstants.swift in Sources */,
 				40CBD95022A017D4000C445F /* IQKeyboardReturnKeyHandler.swift in Sources */,
 				40B15C611F16E03F0094BA7F /* chordVC.swift in Sources */,
+				40E97BE623B19F2A0098E282 /* SelectedPlaylistVC.swift in Sources */,
+				40E97BE223B169190098E282 /* addPlaylistVCTableViewController.swift in Sources */,
 				401405301F3140B80035C4FF /* ColorPalletVC.swift in Sources */,
 				40CBD95222A017D4000C445F /* IQUIScrollView+Additions.swift in Sources */,
 				40CBD94C22A017D4000C445F /* IQInvocation.swift in Sources */,
@@ -488,6 +503,7 @@
 				40CBD95122A017D4000C445F /* IQKeyboardManager.swift in Sources */,
 				40CBD94D22A017D4000C445F /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				40CBD95522A017D4000C445F /* IQUIView+Hierarchy.swift in Sources */,
+				40E97BE023B14CEF0098E282 /* NavigationControllerVC.swift in Sources */,
 				40CFE8021F06AECB001EBDA8 /* AddSongVC.swift in Sources */,
 				40CBD94622A017D4000C445F /* IQTextView.swift in Sources */,
 				40CFE8041F0B0F58001EBDA8 /* SearchWebVC.swift in Sources */,
